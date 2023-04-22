@@ -4,15 +4,18 @@
             <p class="text-deviceTitle font-bold italic">{{ deviceInfo.name }}</p>
         </div>
         <div class="pl-8 text-deviceTitle">
-            <p class="pt-4">
+            <p class="pt-4 flex">
                 <span>State : </span>
                 <span>{{ deviceInfo.ConnectState }}</span>
+                <i>
+                    <IconConnected v-if="deviceInfo.state === 'On'" class="w-6 h-6"></IconConnected>
+                    <IconDisconnected v-else class="w-6 h-6"></IconDisconnected>
+                </i>
             </p>
             <p class="pt-4">
                 <span>{{ deviceInfo.uniqueState.name }} : </span>
                 <span>{{ deviceInfo.uniqueState.value }} </span>
                 <span>{{ deviceInfo.uniqueState.scale }}</span>
-                <i></i>
             </p>
         </div>
         <div class="flex justify-between px-4 py-5">
@@ -28,18 +31,26 @@
 
 <script setup>
 import { reactive } from "vue"
+import IconConnected from "../../icons/IconConnected.vue";
+import IconDisconnected from "../../icons/IconDisconnected.vue";
 
-const deviceInfo = reactive({
-    name: "Bulb-One",
-    ConnectState: "Online",
-    uniqueState: {
-        name: "Light",
-        value: "100",
-        scale: "%"
-    },
-    state: "On",
-    moreText: "Config",
+const that = defineProps({
+    deviceInfo: Object
 })
+const deviceInfo = that.deviceInfo;
+console.log(deviceInfo.name);
+// const deviceInfo = reactive({
+//     name: "Bulb-One",
+//     ConnectState: "Online",
+//     uniqueState: {
+//         name: "Light",
+//         value: "100",
+//         scale: "%"
+//     },
+//     state: "On",
+//     moreText: "Config",
+//     scenario: "Home",
+// })
 </script>
 
 <style scoped>
@@ -47,14 +58,16 @@ const deviceInfo = reactive({
     width: 12.25rem;
     height: 12.25rem;
 }
+
 .deviceBtn {
     width: 5rem;
     height: 2rem;
 }
+
 .deviceOn {
     background-color: #3CDC94;
 }
+
 .deviceOff {
     background-color: #FE5857;
-}
-</style>
+}</style>
