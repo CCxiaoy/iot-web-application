@@ -1,8 +1,9 @@
 <template>
     <div id="devicePanel" class="bg-themeColor-dark mx-12 rounded-3xl overflow-auto">
         <div class="pt-10 pb-4 px-12 flex flex-row-reverse">
-            <i class="w-16 h-8 ml-4 rounded-2xl bg-themeColor-lightest flex justify-center content-center">
+            <i class="w-16 h-8 ml-4 rounded-2xl bg-themeColor-lightest flex justify-center content-center relative">
                 <IconAddNewDevice class="w-8 h-8"></IconAddNewDevice>
+                <AddDeviceTip v-if="addDeviceTipFlag" class="absolute right-1 top-10 z-20"></AddDeviceTip>
             </i>
         </div>
         <div class="flex flex-wrap px-7">
@@ -12,9 +13,16 @@
 </template>
 
 <script setup>
-import { reactive } from "vue"
+import { ref, reactive } from "vue"
 import IconAddNewDevice from '../../icons/IconAddNewDevice.vue';
 import SingleDevice from './SingleDevice.vue';
+import AddDeviceTip from "../../TipComponents/AddDeviceTip.vue";
+
+const addDeviceTipFlag = ref(false);
+
+const toggleAddDeviceTipFlagFlag = () => {
+    addDeviceTipFlag.value = !addDeviceTipFlag.value;
+}
 
 const devicesInfo = reactive([
     {

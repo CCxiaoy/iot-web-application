@@ -31,6 +31,9 @@ module.exports = {
       subnav: ['1.5rem', '2.5rem'],
       scenariotitle: ['1.5rem', '2rem'],
       deviceTitle: ['1rem', '1.75rem'],
+      tipDeleteTitle: ['1rem', '1.75rem'],
+      tipScenarioTitle: ['1.25rem', '1.75rem'],
+      tipAddDeviceTitle: ["1rem", "1,75rem"]
     },
     extend: {},
   },

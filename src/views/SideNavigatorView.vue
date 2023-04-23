@@ -1,7 +1,7 @@
 <template>
     <div class="bg-themeColor-medium">
         <NavCategories>
-            <SubCategory v-for="Category in Categories" :key="Category.id"
+            <SubCategory v-for="Category in allCategories" :key="Category.id"
                 :class="{ isActived: Category.title === currentNav }" @click="navChange(Category.title)">
                 {{ Category.title }}
             </SubCategory>
@@ -14,7 +14,7 @@ import { reactive, ref } from "vue"
 import NavCategories from '../components/Categories/NavCategories.vue';
 import SubCategory from '../components/Categories/SubCategory.vue';
 
-const Categories = reactive([
+const allCategories = reactive([
     {
         id: "All",
         title: "All",
@@ -41,7 +41,6 @@ const currentNav = ref("All")
 
 const navChange = (newNav) => {
     currentNav.value = newNav;
-    console.log("newNav");
 }
 </script>
 
