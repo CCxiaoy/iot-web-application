@@ -3,7 +3,7 @@
         <div class="pl-4 flex">
             <label for="scenarioSelection" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoScenario }}</label>
             <select v-model="scenarioValue" class="ml-2">
-                <option v-for="scenario in AllScenarios" :value="scenario.title" :key="scenario.id">
+                <option v-for="scenario in scenarios" :value="scenario.title" :key="scenario.id">
                     {{ scenario.title }}
                 </option>
             </select>
@@ -11,8 +11,8 @@
         <div class="pl-3 flex mt-6">
             <label for="typeSelection" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoType }}</label>
             <select v-model="categoryValue" class="ml-2">
-                <option v-for="Category in allCategories" :value="Category.title" :key="Category.id">
-                    {{ Category.title }}
+                <option v-for="category in categories" :value="category.title" :key="category.id">
+                    {{ category.title }}
                 </option>
             </select>
         </div>
@@ -42,7 +42,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-// import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia'
 import useInfosStore from '../../stores';
 
 const store = useInfosStore();
@@ -65,42 +65,44 @@ const closeSelfWindow = () => {
 const tipInfoScenario = ref("Scenario : ");
 const scenarioValue = ref("Home");
 // 这里场景类也需要修改
-const AllScenarios = reactive([
-    {
-        id: "Home",
-        title: "Home",
-    },
-    {
-        id: "Living Room",
-        title: "Living Room",
-    },
-]);
+const { scenarios, categories } = storeToRefs(store);
+console.log(scenarios.value)
+// const AllScenarios = reactive([
+//     {
+//         id: "Home",
+//         title: "Home",
+//     },
+//     {
+//         id: "Living Room",
+//         title: "Living Room",
+//     },
+// ]);
 
 const tipInfoType = ref("Type : ");
 const categoryValue = ref("Lamp");
 // 这里类型需要修改
-const allCategories = reactive([
-    {
-        id: "All",
-        title: "All",
-        url: "/",
-    },
-    {
-        id: "Lamp",
-        title: "Lamp",
-        url: "/lamp",
-    },
-    {
-        id: "Fan",
-        title: "Fan",
-        url: "/fan",
-    },
-    {
-        id: "Sensor",
-        title: "Sensor",
-        url: "/sensor",
-    }
-])
+// const allCategories = reactive([
+//     {
+//         id: "All",
+//         title: "All",
+//         url: "/",
+//     },
+//     {
+//         id: "Lamp",
+//         title: "Lamp",
+//         url: "/lamp",
+//     },
+//     {
+//         id: "Fan",
+//         title: "Fan",
+//         url: "/fan",
+//     },
+//     {
+//         id: "Sensor",
+//         title: "Sensor",
+//         url: "/sensor",
+//     }
+// ])
 
 const tipInfoDeviceName = ref("Device Name : ");
 const deviceNamePlaceholder = ref("Type device name");

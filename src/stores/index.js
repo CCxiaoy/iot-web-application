@@ -8,8 +8,43 @@ const useInfosStore = defineStore("store", {
             darkCoverFlag: false,
             devices: [
             ],
-            scenarios: [],
-            categories: [],
+            scenarios: [
+                {
+                    id: "Home",
+                    title: "Home",
+                },
+                {
+                    id: "Living Room",
+                    title: "Living Room",
+                },
+            ],
+            categories: [
+                {
+                    id: "Lamp",
+                    title: "Lamp",
+                    url: "/lamp",
+                },
+                {
+                    id: "Fan",
+                    title: "Fan",
+                    url: "/fan",
+                },
+                {
+                    id: "BrightnessSensor",
+                    title: "BrightnessSensor",
+                    url: "/BrightnessSensor",
+                },
+                {
+                    id: "HumidSensor",
+                    title: "HumidSensor",
+                    url: "/HumidSensor",
+                },
+                {
+                    id: "TemperatureSensor",
+                    title: "TemperatureSensor",
+                    url: "/TemperatureSensor",
+                },
+            ],
         }
     },
     getters: {
