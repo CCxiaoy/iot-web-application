@@ -26,7 +26,7 @@ const devicesInfo = reactive([
             scale: "%"
         },
         state: "On",
-        moreText: "Config",
+        moreText: "Delete",
         scenario: "Home",
         type: "Lamp",
         macAddress: "",
@@ -40,7 +40,7 @@ const devicesInfo = reactive([
             scale: "%"
         },
         state: "Off",
-        moreText: "Config",
+        moreText: "Delete",
         scenario: "Home",
         type: "Fan",
         macAddress: "",
@@ -54,7 +54,7 @@ const devicesInfo = reactive([
             scale: "%",
         },
         state: "On",
-        moreText: "Config",
+        moreText: "Delete",
         scenario: "Home",
         type: "Sensor",
         macAddress: "",
@@ -68,7 +68,7 @@ const devicesInfo = reactive([
             scale: "%"
         },
         state: "On",
-        moreText: "Config",
+        moreText: "Delete",
         scenario: "Home",
         type: "Sensor",
         macAddress: "",
@@ -82,7 +82,7 @@ const devicesInfo = reactive([
             scale: "℃"
         },
         state: "On",
-        moreText: "Config",
+        moreText: "Delete",
         scenario: "Home",
         type: "Sensor",
         macAddress: "",

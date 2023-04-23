@@ -26,7 +26,7 @@ module.exports = {
       leftnavtitle: ['2rem', '3rem'],
       subnav: ['1.5rem', '2.5rem'],
       scenariotitle: ['1.5rem', '2rem'],
-      deviceTitle: ['1.25rem', '1.75rem'],
+      deviceTitle: ['1rem', '1.75rem'],
     },
     extend: {},
   },
