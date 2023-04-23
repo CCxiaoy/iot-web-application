@@ -9,15 +9,20 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import SideNavigatorView from './views/SideNavigatorView.vue';
 import DarkCover from './components/TipComponents/DarkCover.vue';
+import useInfosStore from './stores';
+const store = useInfosStore();
+
 // import test from './Tools/index.js'
 
-const darkCoverFlag = ref(false);
+// const darkCoverFlag = ref(false);
+const { darkCoverFlag } = storeToRefs(store);
 
-const toggleDarkCoverFlag = () => {
-  darkCoverFlag.value = !darkCoverFlag.value;
-}
+// const toggleDarkCoverFlag = () => {
+//   darkCoverFlag.value = !darkCoverFlag.value;
+// }
 </script>
 
 <style scoped></style>

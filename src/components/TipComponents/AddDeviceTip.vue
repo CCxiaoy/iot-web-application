@@ -27,6 +27,7 @@
                 {{ confirmInfo }}
             </div>
             <div
+                @click="closeSelfWindow"
                 class="bg-authiraryColor-redMedium rounded-2xl text-tipDeleteTitle btnInfoW h-7 flex justify-center content-center mr-2">
                 {{ cancelInfo }}
             </div>
@@ -36,6 +37,21 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { storeToRefs } from 'pinia'
+import useInfosStore from '../../stores';
+
+const store = useInfosStore();
+const { devices } = storeToRefs(store);
+console.log(devices.value[0]);
+
+const closeDarkCover = store.closeDarkCover;
+
+const emits = defineEmits(['closeAddDeviceTip'])
+// method to close this Tip window self / abort operation
+const closeSelfWindow = () => {
+    closeDarkCover();
+    emits('closeAddDeviceTip');
+}
 
 const tipInfoScenario = ref("Scenario : ");
 const scenarioValue = ref("Home");
@@ -47,7 +63,7 @@ const AllScenarios = reactive([
     {
         id: "Living Room",
         title: "Living Room",
-    }
+    },
 ]);
 
 const tipInfoType = ref("Type : ");

@@ -2,8 +2,8 @@
     <div id="devicePanel" class="bg-themeColor-dark mx-12 rounded-3xl overflow-auto">
         <div class="pt-10 pb-4 px-12 flex flex-row-reverse">
             <i class="w-16 h-8 ml-4 rounded-2xl bg-themeColor-lightest flex justify-center content-center relative">
-                <IconAddNewDevice class="w-8 h-8"></IconAddNewDevice>
-                <AddDeviceTip v-if="addDeviceTipFlag" class="absolute right-1 top-10 z-20"></AddDeviceTip>
+                <IconAddNewDevice @click="openAddDeviceTip" class="w-8 h-8"></IconAddNewDevice>
+                <AddDeviceTip  v-if="addDeviceTipFlag" @closeAddDeviceTip="closeAddDeviceTip" class="absolute right-1 top-10 z-20"></AddDeviceTip>
             </i>
         </div>
         <div class="flex flex-wrap px-7">
@@ -17,11 +17,23 @@ import { ref, reactive } from "vue"
 import IconAddNewDevice from '../../icons/IconAddNewDevice.vue';
 import SingleDevice from './SingleDevice.vue';
 import AddDeviceTip from "../../TipComponents/AddDeviceTip.vue";
+import useInfosStore from "../../../stores";
 
 const addDeviceTipFlag = ref(false);
 
-const toggleAddDeviceTipFlagFlag = () => {
-    addDeviceTipFlag.value = !addDeviceTipFlag.value;
+const store = useInfosStore();
+
+// import method of openDarkCover
+const openDarkCover = store.openDarkCover;
+
+const openAddDeviceTip = () => {
+    openDarkCover();
+    addDeviceTipFlag.value = true;
+}
+
+// pass to AddDeviceTip as a response to cancel operation
+const closeAddDeviceTip = () => {
+    addDeviceTipFlag.value = false;
 }
 
 const devicesInfo = reactive([
