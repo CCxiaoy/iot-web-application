@@ -19,7 +19,7 @@
         <div class="pl-3 flex mt-8">
             <label for="macInput" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoMac }}</label>
             <input id="macInput" type="" v-model="macAddressValue" :placeholder="macAddressPlaceholder" maxlength="17"
-                class="w-44 ml-2 text-tipAddDeviceTitle" />
+                class="w-44 ml-2 text-tipAddDeviceTitle" /> 
         </div>
         <div class="flex justify-end mt-10 mb-6">
             <div
