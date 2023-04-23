@@ -1,6 +1,6 @@
 <template>
-    <div id="devicePanel" class="bg-themeColor-dark mx-12 rounded-3xl">
-        <div class="py-10 px-12 flex flex-row-reverse">
+    <div id="devicePanel" class="bg-themeColor-dark mx-12 rounded-3xl overflow-auto">
+        <div class="pt-10 pb-4 px-12 flex flex-row-reverse">
             <i class="w-16 h-8 ml-4 rounded-2xl bg-themeColor-lightest flex justify-center content-center">
                 <IconAddNewDevice class="w-8 h-8"></IconAddNewDevice>
             </i>
@@ -92,6 +92,6 @@ const devicesInfo = reactive([
 
 <style scoped>
 #devicePanel {
-    height: 87%;
+    height: 87vh;
 }
 </style>

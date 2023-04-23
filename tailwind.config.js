@@ -15,7 +15,11 @@ module.exports = {
         light: "#ECFCF4",
         medium: "#B1F1D4",
         dark: "#3CDC94",
-        darkest: "#000000"
+        darkest: "#000000",
+      },
+      authiraryColor: {
+        redMedium: "#FE5857",
+        blueMedium: "#289CFE",
       },
       borderGray: {
         medium: "#707070",
