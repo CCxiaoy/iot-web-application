@@ -1,33 +1,38 @@
 <template>
-    <div class="addDeviceTipW h-64 bg-themeColor-lightest rounded-2xl py-6 border-2 border-borderGray-medium">
+    <div class="addDeviceTipW addDeviceTipH bg-themeColor-lightest rounded-2xl py-6 border-2 border-borderGray-medium">
         <div class="pl-4 flex">
             <label for="scenarioSelection" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoScenario }}</label>
-            <select v-model="scenarioValue" class="ml-2" >
+            <select v-model="scenarioValue" class="ml-2">
                 <option v-for="scenario in AllScenarios" :value="scenario.title" :key="scenario.id">
                     {{ scenario.title }}
                 </option>
             </select>
         </div>
-        <div class="pl-3 flex mt-8">
+        <div class="pl-3 flex mt-6">
             <label for="typeSelection" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoType }}</label>
-            <select v-model="categoryValue" class="ml-2" >
+            <select v-model="categoryValue" class="ml-2">
                 <option v-for="Category in allCategories" :value="Category.title" :key="Category.id">
-                    {{ Category.title }}=
+                    {{ Category.title }}
                 </option>
             </select>
         </div>
-        <div class="pl-3 flex mt-8">
+        <div class="pl-3 flex mt-6">
+            <label for="nameInput" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoDeviceName }}</label>
+            <input id="nameInput" type="" v-model="deviceNameValue" :placeholder="deviceNamePlaceholder"
+                class="w-44 ml-2 text-tipAddDeviceTitle" />
+        </div>
+        <div class="pl-3 flex mt-6">
             <label for="macInput" class="text-tipAddDeviceTitle italic font-bold">{{ tipInfoMac }}</label>
             <input id="macInput" type="" v-model="macAddressValue" :placeholder="macAddressPlaceholder" maxlength="17"
-                class="w-44 ml-2 text-tipAddDeviceTitle" /> 
+                class="w-44 ml-2 text-tipAddDeviceTitle" />
         </div>
         <div class="flex justify-end mt-10 mb-6">
             <div
+                @click="addNewDevice"
                 class="bg-authiraryColor-blueMedium rounded-2xl text-tipDeleteTitle btnInfoW h-7 flex justify-center content-center mr-2">
                 {{ confirmInfo }}
             </div>
-            <div
-                @click="closeSelfWindow"
+            <div @click="closeSelfWindow"
                 class="bg-authiraryColor-redMedium rounded-2xl text-tipDeleteTitle btnInfoW h-7 flex justify-center content-center mr-2">
                 {{ cancelInfo }}
             </div>
@@ -37,12 +42,16 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import useInfosStore from '../../stores';
 
 const store = useInfosStore();
-const { devices } = storeToRefs(store);
-console.log(devices.value[0]);
+// const { devices } = storeToRefs(store);
+
+const addNewDevice = () => {
+    store.addNewDevice(scenarioValue.value, categoryValue.value, deviceNameValue.value, macAddressValue.value);
+    closeSelfWindow();
+}
 
 const closeDarkCover = store.closeDarkCover;
 
@@ -55,6 +64,7 @@ const closeSelfWindow = () => {
 
 const tipInfoScenario = ref("Scenario : ");
 const scenarioValue = ref("Home");
+// 这里场景类也需要修改
 const AllScenarios = reactive([
     {
         id: "Home",
@@ -68,6 +78,7 @@ const AllScenarios = reactive([
 
 const tipInfoType = ref("Type : ");
 const categoryValue = ref("Lamp");
+// 这里类型需要修改
 const allCategories = reactive([
     {
         id: "All",
@@ -91,6 +102,10 @@ const allCategories = reactive([
     }
 ])
 
+const tipInfoDeviceName = ref("Device Name : ");
+const deviceNamePlaceholder = ref("Type device name");
+const deviceNameValue = ref("");
+
 const tipInfoMac = ref("Mac Address : ");
 const macAddressPlaceholder = ref("6 Hexadecimal E0:22...");
 const macAddressValue = ref("");
@@ -103,6 +118,11 @@ const cancelInfo = ref("CANCEL");
 .addDeviceTipW {
     width: 20rem;
 }
+
+.addDeviceTipH {
+    height: 18rem;
+}
+
 .btnInfoW {
     width: 4.5rem;
 }
