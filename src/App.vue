@@ -11,6 +11,7 @@ import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import SideNavigatorView from './views/SideNavigatorView.vue';
 import DarkCover from './components/TipComponents/DarkCover.vue';
+// import test from './Tools/index.js'
 
 const darkCoverFlag = ref(false);
 
