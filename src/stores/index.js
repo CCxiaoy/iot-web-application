@@ -94,14 +94,3 @@ const useInfosStore = defineStore("store", {
 })
 
 export default useInfosStore
-
-
-// import useDevicesStore from "./devices";
-// import useCategoriesStore from "./categories";
-
-// export default function useStore() {
-//     return {
-//         devicesInfo: useDevicesStore(),
-//         categoriesInfo: useCategoriesStore(),
-//     }
-// }
