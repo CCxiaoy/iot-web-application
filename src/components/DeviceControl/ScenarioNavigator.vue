@@ -33,10 +33,10 @@ import AddScenarioTip from "../TipComponents/AddScenarioTip.vue";
 import useInfosStore from "../../stores";
 import { storeToRefs } from 'pinia'
 
-const currentPage = ref(0);
-
 // import center store
 const store = useInfosStore();
+
+const { scenarios, currentPage } = storeToRefs(store);
 
 const addScenarioTipFlag = ref(false);
 
@@ -53,34 +53,17 @@ const closeAddScenarioTip = () => {
     addScenarioTipFlag.value = false;
 }
 
-const { scenarios } = storeToRefs(store);
-
-// switch scenario
-const switchScenario = (change, pageNum, l) => {
-    return (pageNum + l + change) % l;
-}
 // previous scenario
 const previousScenario = () => {
-    const l = scenarios.value.length;
-    const pageNum = currentPage.value;
-    currentPage.value = switchScenario(-1, pageNum, l);
+    store.previousScenario();
 }
 // next scenario
 const nextScenario = () => {
-    const l = scenarios.value.length;
-    const pageNum = currentPage.value;
-    currentPage.value = switchScenario(1, pageNum, l);
+    store.nextScenario();
 }
 // back to Home scenario
 const backToHomeScenario = () => {
-    let index;
-    let homeScenarioID = "Home";
-    for(index = 0; index < scenarios.value.length; i++) {
-        if(scenarios.value[index].id === homeScenarioID) {
-            break;
-        }
-    }
-    currentPage.value = index;
+    store.backToHomeScenario();
 }
 </script>
 

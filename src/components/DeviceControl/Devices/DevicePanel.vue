@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue"
+import { ref, reactive, computed } from "vue"
 import IconAddNewDevice from '../../icons/IconAddNewDevice.vue';
 import SingleDevice from './SingleDevice.vue';
 import AddDeviceTip from "../../TipComponents/AddDeviceTip.vue";
@@ -21,6 +21,7 @@ import { storeToRefs } from 'pinia'
 import useInfosStore from "../../../stores";
 
 const addDeviceTipFlag = ref(false);
+
 
 // import center store
 const store = useInfosStore();
@@ -38,7 +39,7 @@ const closeAddDeviceTip = () => {
     addDeviceTipFlag.value = false;
 }
 
-const { devices } = storeToRefs(store);
+const devices = computed(() => store.getDevices);
 </script>
 
 <style scoped>

@@ -1,8 +1,8 @@
 <template>
     <div class="bg-themeColor-medium">
         <NavCategories>
-            <SubCategory v-for="Category in allCategories" :key="Category.id"
-                :class="{ isActived: Category.title === currentNav }" @click="navChange(Category.title)">
+            <SubCategory v-for="Category in SideNavigatorCategories" :key="Category.id"
+                :class="{ isActived: Category.title === currentSideNav }" @click="sideNavChange(Category.title)">
                 {{ Category.title }}
             </SubCategory>
         </NavCategories>
@@ -13,34 +13,16 @@
 import { reactive, ref } from "vue"
 import NavCategories from '../components/Categories/NavCategories.vue';
 import SubCategory from '../components/Categories/SubCategory.vue';
+import useInfosStore from "../stores";
+import { storeToRefs } from 'pinia';
 
-const allCategories = reactive([
-    {
-        id: "All",
-        title: "All",
-        url: "/",
-    },
-    {
-        id: "Lamp",
-        title: "Lamp",
-        url: "/lamp",
-    },
-    {
-        id: "Fan",
-        title: "Fan",
-        url: "/fan",
-    },
-    {
-        id: "Sensor",
-        title: "Sensor",
-        url: "/sensor",
-    }
-])
+// import center store
+const store = useInfosStore();
 
-const currentNav = ref("All")
+const { currentSideNav, SideNavigatorCategories } = storeToRefs(store);
 
-const navChange = (newNav) => {
-    currentNav.value = newNav;
+const sideNavChange = (newNav) => {
+    store.sideNavChange(newNav);
 }
 </script>
 

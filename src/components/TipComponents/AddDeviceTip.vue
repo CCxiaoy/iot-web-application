@@ -46,7 +46,6 @@ import { storeToRefs } from 'pinia'
 import useInfosStore from '../../stores';
 
 const store = useInfosStore();
-// const { devices } = storeToRefs(store);
 
 const addNewDevice = () => {
     store.addNewDevice(scenarioValue.value, categoryValue.value, deviceNameValue.value, macAddressValue.value);
@@ -65,7 +64,6 @@ const closeSelfWindow = () => {
 const tipInfoScenario = ref("Scenario : ");
 const scenarioValue = ref("Home");
 const { scenarios, categories } = storeToRefs(store);
-console.log(scenarios.value)
 
 const tipInfoType = ref("Type : ");
 const categoryValue = ref("Lamp");

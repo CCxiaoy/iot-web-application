@@ -1,13 +1,32 @@
 import { defineStore } from 'pinia'
 import { createDevice } from '../Tools/StoreOperations/createNewDeviceObj';
 import { createScenario } from '../Tools/StoreOperations/createNewScenarioObj';
+import { calculateScenario } from '../Tools/StoreOperations/calculateScenarioPage';
+import { scenarioFilter } from '../Tools/StoreOperations/FilterOperations/scenarioFilter';
+import { typeFilter } from '../Tools/StoreOperations/FilterOperations/typeFilter';
 
 const useInfosStore = defineStore("store", {
     // data store
     state: () => {
         return {
             darkCoverFlag: false,
+            currentSideNav: "All",
+            currentPage: 0,
             devices: [
+                // {
+                //     name: "Bulb-One",
+                //     ConnectState: "Online",
+                //     uniqueState: {
+                //         name: "Light",
+                //         value: "100",
+                //         scale: "%"
+                //     },
+                //     state: "On",
+                //     moreText: "Config",
+                //     scenario: "Home",
+                //     type: "Lamp",
+                //     macAddress: "",
+                // },
             ],
             scenarios: [
                 {
@@ -46,12 +65,47 @@ const useInfosStore = defineStore("store", {
                     url: "/TemperatureSensor",
                 },
             ],
+            SideNavigatorCategories: [
+                {
+                    id: "All",
+                    title: "All",
+                    url: "/",
+                },
+                {
+                    id: "Lamp",
+                    title: "Lamp",
+                    url: "/lamp",
+                },
+                {
+                    id: "Fan",
+                    title: "Fan",
+                    url: "/fan",
+                },
+                {
+                    id: "Sensor",
+                    title: "Sensor",
+                    url: "/sensor",
+                }                
+            ]
         }
     },
     getters: {
-        // getDarkCoverFlag() {
-
-        // }
+        getDevices: (state) => {
+            return state
+                    .devices
+                    .filter((device) => {
+                            return scenarioFilter(state.scenarios[state.currentPage].title, device.scenario);
+                    })
+                    .filter((device) => {
+                            return typeFilter(state.currentSideNav, device.type);
+                    });
+                    // let scenarioFiltered = state.devices.filter((device) => {
+                    //     return scenarioFilter(state.scenarios[state.currentPage].title, device.scenario);
+                    // })
+                    // let typeFilter = state.devices.filter((device) => {
+                    //     return typeFilter(state.scenarios[state.currentPage].title, device.scenario);
+                    // })
+        }
     },
     actions: {
         // Dark Cover Realted
@@ -59,7 +113,6 @@ const useInfosStore = defineStore("store", {
             this.darkCoverFlag = newVal;
         },
         closeDarkCover() {
-            console.log("See", 2);
             this.changeDarkCoverFlag(false);
         },
         openDarkCover() {
@@ -88,6 +141,29 @@ const useInfosStore = defineStore("store", {
             const newScenario = JSON.parse(JSON.stringify(createScenario(title)));
             this.scenarios.push(newScenario);
         },
+        // Switch to previous scenario
+        previousScenario() {
+            this.currentPage = calculateScenario(-1, this.currentPage, this.scenarios.length);
+        },
+        // Switch to next scenario
+        nextScenario() {
+            this.currentPage = calculateScenario(1, this.currentPage, this.scenarios.length);
+        },
+        // Back to Home scenario
+        backToHomeScenario() {
+            let index;
+            let homeScenarioID = "Home";
+            for(index = 0; index < this.scenarios.length; index++) {
+                if(this.scenarios[index].id === homeScenarioID) {
+                    break;
+                }
+            }
+            this.currentPage = index;
+        },
+        // Change currentSideNav
+        sideNavChange(newNav) {
+            this.currentSideNav = newNav;
+        }
     },
     // data persist
     persist: true,

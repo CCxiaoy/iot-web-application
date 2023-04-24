@@ -1,133 +1,182 @@
-const createLampDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
-    const newDevice = {
-        name: deviceName,
-        ConnectState: "Online",
-        // ConnectState: "Offline",
-        uniqueState: {
-            name: "Light",
-            value: "100",
-            scale: "%"
-        },
-        state: "On",
-        // state: "Off",
-        moreText: "Delete",
-        scenario: deviceScenario,
-        type: deviceType, // Lamp
-        macAddress: macAddress,
-    }
-    return newDevice;
-}
+const createLampDevice = (
+  deviceScenario,
+  deviceType,
+  deviceName,
+  macAddress
+) => {
+  const newDevice = {
+    name: deviceName,
+    ConnectState: "Online",
+    // ConnectState: "Offline",
+    uniqueState: {
+      name: "Light",
+      value: "100",
+      scale: "%",
+    },
+    state: "On",
+    // state: "Off",
+    moreText: "Delete",
+    scenario: deviceScenario,
+    type: deviceType, // Lamp
+    macAddress: macAddress,
+  };
+  return newDevice;
+};
 
-const createFanDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
-    const newDevice = {
-        name: deviceName,
-        ConnectState: "Online",
-        // ConnectState: "Offline",
-        uniqueState: {
-            name: "Speed",
-            value: "100",
-            scale: "%"
-        },
-        state: "On",
-        // state: "Off",
-        moreText: "Delete",
-        scenario: deviceScenario,
-        type: deviceType, // Lamp
-        macAddress: macAddress,
-    }
-    return newDevice;
-}
+const createFanDevice = (
+  deviceScenario,
+  deviceType,
+  deviceName,
+  macAddress
+) => {
+  const newDevice = {
+    name: deviceName,
+    ConnectState: "Online",
+    // ConnectState: "Offline",
+    uniqueState: {
+      name: "Speed",
+      value: "100",
+      scale: "%",
+    },
+    state: "On",
+    // state: "Off",
+    moreText: "Delete",
+    scenario: deviceScenario,
+    type: deviceType, // Lamp
+    macAddress: macAddress,
+  };
+  return newDevice;
+};
 
-const createBrightnessSensor = (deviceScenario, deviceType, deviceName, macAddress) => {
-    const newDevice = {
-        name: deviceName,
-        ConnectState: "Online",
-        // ConnectState: "Offline",
-        uniqueState: {
-            name: "Brightness",
-            value: "80",
-            scale: "%",
-        },
-        state: "On",
-        // state: "Off",
-        moreText: "Delete",
-        scenario: deviceScenario,
-        type: deviceType, // Lamp
-        macAddress: macAddress,
-    }
-    return newDevice;
-}
+const createBrightnessSensor = (
+  deviceScenario,
+  deviceType,
+  deviceName,
+  macAddress
+) => {
+  const newDevice = {
+    name: deviceName,
+    ConnectState: "Online",
+    // ConnectState: "Offline",
+    uniqueState: {
+      name: "Brightness",
+      value: "80",
+      scale: "%",
+    },
+    state: "On",
+    // state: "Off",
+    moreText: "Delete",
+    scenario: deviceScenario,
+    type: deviceType, // Lamp
+    macAddress: macAddress,
+  };
+  return newDevice;
+};
 
-const createHumidSensor = (deviceScenario, deviceType, deviceName, macAddress) => {
-    const newDevice = {
-        name: deviceName,
-        ConnectState: "Online",
-        // ConnectState: "Offline",
-        uniqueState: {
-            name: "Humidity",
-            value: "80",
-            scale: "%"
-        },
-        state: "On",
-        // state: "Off",
-        moreText: "Delete",
-        scenario: deviceScenario,
-        type: deviceType, // Lamp
-        macAddress: macAddress,
-    }
-    return newDevice;
-}
+const createHumidSensor = (
+  deviceScenario,
+  deviceType,
+  deviceName,
+  macAddress
+) => {
+  const newDevice = {
+    name: deviceName,
+    ConnectState: "Online",
+    // ConnectState: "Offline",
+    uniqueState: {
+      name: "Humidity",
+      value: "80",
+      scale: "%",
+    },
+    state: "On",
+    // state: "Off",
+    moreText: "Delete",
+    scenario: deviceScenario,
+    type: deviceType, // Lamp
+    macAddress: macAddress,
+  };
+  return newDevice;
+};
 
-const createTemperatureDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
-    const newDevice = {
-        name: deviceName,
-        ConnectState: "Online",
-        // ConnectState: "Offline",
-        uniqueState: {
-            name: "Celsius",
-            value: "27",
-            scale: "℃"
-        },
-        state: "On",
-        // state: "Off",
-        moreText: "Delete",
-        scenario: deviceScenario,
-        type: deviceType, // Lamp
-        macAddress: macAddress,
-    }
-    return newDevice;
-}
+const createTemperatureDevice = (
+  deviceScenario,
+  deviceType,
+  deviceName,
+  macAddress
+) => {
+  const newDevice = {
+    name: deviceName,
+    ConnectState: "Online",
+    // ConnectState: "Offline",
+    uniqueState: {
+      name: "Celsius",
+      value: "27",
+      scale: "℃",
+    },
+    state: "On",
+    // state: "Off",
+    moreText: "Delete",
+    scenario: deviceScenario,
+    type: deviceType, // Lamp
+    macAddress: macAddress,
+  };
+  return newDevice;
+};
 
 const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
-    let newDevice;
-    switch (deviceType) {
-        case "Lamp":
-            newDevice = createLampDevice(deviceScenario, deviceType, deviceName, macAddress);
-            break;
+  let newDevice;
+  switch (deviceType) {
+    case "Lamp":
+      newDevice = createLampDevice(
+        deviceScenario,
+        deviceType,
+        deviceName,
+        macAddress
+      );
+      break;
 
-        case "Fan":
-            newDevice = createFanDevice(deviceScenario, deviceType, deviceName, macAddress);
-            break;
+    case "Fan":
+      newDevice = createFanDevice(
+        deviceScenario,
+        deviceType,
+        deviceName,
+        macAddress
+      );
+      break;
 
-        case "BrightnessSensor":
-            newDevice = createBrightnessSensor(deviceScenario, deviceType, deviceName, macAddress);
-            break;
+    case "BrightnessSensor":
+      newDevice = createBrightnessSensor(
+        deviceScenario,
+        deviceType,
+        deviceName,
+        macAddress
+      );
+      break;
 
-        case "HumidSensor":
-            newDevice = createHumidSensor(deviceScenario, deviceType, deviceName, macAddress);
-            break;
+    case "HumidSensor":
+      newDevice = createHumidSensor(
+        deviceScenario,
+        deviceType,
+        deviceName,
+        macAddress
+      );
+      break;
 
-        case "TemperatureSensor":
-            newDevice = createTemperatureDevice(deviceScenario, deviceType, deviceName, macAddress);
-            break;
-    
-        default:
-            newDevice = {};
-            break;
-    }
-    return newDevice;
-}
+    case "TemperatureSensor":
+      newDevice = createTemperatureDevice(
+        deviceScenario,
+        deviceType,
+        deviceName,
+        macAddress
+      );
+      break;
 
+    default:
+      newDevice = {};
+      break;
+  }
+  return newDevice;
+};
 
 // {
 //     id: "All",
@@ -221,6 +270,4 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 //     macAddress: "",
 // }
 
-export {
-    createDevice,
-}
+export { createDevice };
