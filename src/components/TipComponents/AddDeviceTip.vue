@@ -64,9 +64,24 @@ const closeSelfWindow = () => {
 
 const tipInfoScenario = ref("Scenario : ");
 const scenarioValue = ref("Home");
-// 这里场景类也需要修改
 const { scenarios, categories } = storeToRefs(store);
 console.log(scenarios.value)
+
+const tipInfoType = ref("Type : ");
+const categoryValue = ref("Lamp");
+
+const tipInfoDeviceName = ref("Device Name : ");
+const deviceNamePlaceholder = ref("Type device name");
+const deviceNameValue = ref("");
+
+const tipInfoMac = ref("Mac Address : ");
+const macAddressPlaceholder = ref("6 Hexadecimal E0:22...");
+const macAddressValue = ref("");
+
+const confirmInfo = ref("ADD");
+const cancelInfo = ref("CANCEL");
+
+// 这里场景类也需要修改
 // const AllScenarios = reactive([
 //     {
 //         id: "Home",
@@ -78,8 +93,6 @@ console.log(scenarios.value)
 //     },
 // ]);
 
-const tipInfoType = ref("Type : ");
-const categoryValue = ref("Lamp");
 // 这里类型需要修改
 // const allCategories = reactive([
 //     {
@@ -103,17 +116,6 @@ const categoryValue = ref("Lamp");
 //         url: "/sensor",
 //     }
 // ])
-
-const tipInfoDeviceName = ref("Device Name : ");
-const deviceNamePlaceholder = ref("Type device name");
-const deviceNameValue = ref("");
-
-const tipInfoMac = ref("Mac Address : ");
-const macAddressPlaceholder = ref("6 Hexadecimal E0:22...");
-const macAddressValue = ref("");
-
-const confirmInfo = ref("ADD");
-const cancelInfo = ref("CANCEL");
 </script>
 
 <style scoped>

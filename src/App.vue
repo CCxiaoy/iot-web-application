@@ -20,12 +20,6 @@ const { darkCoverFlag } = storeToRefs(store);
 
 const closeDarkCover = store.closeDarkCover;
 
-// onbeforeunload(() => {
-//   console.log(1);
-//   closeDarkCover();
-//   console.log(2);
-// })
-
 window.addEventListener('beforeunload', closeDarkCover);
 </script>
 

@@ -67,6 +67,19 @@ const useInfosStore = defineStore("store", {
         addNewDevice(deviceScenario, deviceType, deviceName, macAddress) {
             const newDevice = JSON.parse(JSON.stringify(createDevice(deviceScenario, deviceType, deviceName, macAddress)));
             this.devices.push(newDevice)
+        },
+        // delete Existed Device
+        deleteOldDevice(deviceName) {
+            let index, found = false;
+            for(index = 0; index < this.devices.length; index++) {
+                if(this.devices[index].name === deviceName) {
+                    found = true;
+                    break;
+                }
+            }
+            if(found) {
+                this.devices.splice(index, 1);
+            }
         }
     },
     // data persist

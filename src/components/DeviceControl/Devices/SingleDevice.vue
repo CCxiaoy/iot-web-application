@@ -22,11 +22,11 @@
             <div class="deviceBtn rounded-2xl text-deviceTitle flex justify-center content-center"
                 :class="{ deviceOn: deviceInfo.state === 'On', deviceOff: deviceInfo.state !== 'On' }">{{
                     deviceInfo.state }}</div>
-            <div
+            <div @click="openDeleteDeviceTip"
                 class="deviceBtn rounded-2xl bg-themeColor-darkest text-themeColor-lightest text-deviceTitle flex justify-center content-center">
                 {{ deviceInfo.moreText }}
             </div>
-            <DeleteDeviceTip v-if="deleteDeviceTipFlag" class="absolute bottom-5 right-2 z-20"></DeleteDeviceTip>
+            <DeleteDeviceTip :deviceName="deviceInfo.name" @closeDeleteDeviceTip="closeDeleteDeviceTip" v-if="deleteDeviceTipFlag" class="absolute bottom-5 right-2 z-20"></DeleteDeviceTip>
         </div>
     </div>
 </template>
@@ -36,29 +36,30 @@ import { ref, reactive } from "vue"
 import IconConnected from "../../icons/IconConnected.vue";
 import IconDisconnected from "../../icons/IconDisconnected.vue";
 import DeleteDeviceTip from "../../TipComponents/DeleteDeviceTip.vue";
+import useInfosStore from "../../../stores";
+
+const store = useInfosStore();
 
 const that = defineProps({
     deviceInfo: Object
 })
 const deviceInfo = that.deviceInfo;
 
+// import method of openDarkCover
+const openDarkCover = store.openDarkCover;
+
 const deleteDeviceTipFlag = ref(false);
 
-const toggleDeleteDeviceTipFlagFlag = () => {
-    deleteDeviceTipFlag.value = !deleteDeviceTipFlag.value;
+const openDeleteDeviceTip = () => {
+    openDarkCover();
+    deleteDeviceTipFlag.value = true;
 }
-// const deviceInfo = reactive({
-//     name: "Bulb-One",
-//     ConnectState: "Online",
-//     uniqueState: {
-//         name: "Light",
-//         value: "100",
-//         scale: "%"
-//     },
-//     state: "On",
-//     moreText: "Config",
-//     scenario: "Home",
-// })
+
+// pass to DeleteDeviceTip as a response to cancel operation
+const closeDeleteDeviceTip = () => {
+    deleteDeviceTipFlag.value = false;
+}
+
 </script>
 
 <style scoped>
