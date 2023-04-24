@@ -16,8 +16,9 @@
         </i>
         <i
             class="w-8 h-8 border-2 rounded-full border-borderGray-medium bg-themeColor-lightest flex justify-center content-center">
-            <IconNewScenario class="w-8 h-8"></IconNewScenario>
-            <AddScenarioTip v-if="addScearioTipFlag" class="absolute z-20 top-14 right-12"></AddScenarioTip>
+            <IconNewScenario @click="openAddScenarioTip()" class="w-8 h-8"></IconNewScenario>
+            <AddScenarioTip @closeAddScenarioTip="closeAddScenarioTip" v-if="addScenarioTipFlag"
+                class="absolute z-20 top-14 right-12"></AddScenarioTip>
         </i>
     </div>
 </template>
@@ -29,9 +30,29 @@ import IconPreviousPage from "../icons/IconPreviousPage.vue";
 import IconNextPage from "../icons/IconNextPage.vue";
 import IconNewScenario from "../icons/IconNewScenario.vue";
 import AddScenarioTip from "../TipComponents/AddScenarioTip.vue";
+import useInfosStore from "../../stores";
 
 const currentPage = ref(0);
 
+// import center store
+const store = useInfosStore();
+
+const addScenarioTipFlag = ref(false);
+
+// import method of openDarkCover
+const openDarkCover = store.openDarkCover;
+
+// method to open AddSce
+const openAddScenarioTip = () => {
+    openDarkCover();
+    addScenarioTipFlag.value = true;
+}
+
+const closeAddScenarioTip = () => {
+    addScenarioTipFlag.value = false;
+}
+
+// 以下这块需要改造成 使用 center store
 const AllScenarios = reactive([
     {
         id: "Home",
@@ -42,12 +63,6 @@ const AllScenarios = reactive([
         title: "Living Room",
     }
 ]);
-
-const addScearioTipFlag = ref(false);
-
-const toggleAddScearioTipFlagFlag = () => {
-    addScearioTipFlag.value = !addScearioTipFlag.value;
-}
 </script>
 
 <style scoped></style>

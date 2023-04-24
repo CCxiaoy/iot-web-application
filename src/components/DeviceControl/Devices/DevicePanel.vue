@@ -22,6 +22,7 @@ import useInfosStore from "../../../stores";
 
 const addDeviceTipFlag = ref(false);
 
+// import center store
 const store = useInfosStore();
 
 // import method of openDarkCover
@@ -38,79 +39,6 @@ const closeAddDeviceTip = () => {
 }
 
 const { devices } = storeToRefs(store);
-
-// const devicesInfo = reactive([
-//     {
-//         name: "Bulb-One",
-//         ConnectState: "Online",
-//         uniqueState: {
-//             name: "Light",
-//             value: "100",
-//             scale: "%"
-//         },
-//         state: "On",
-//         moreText: "Delete",
-//         scenario: "Home",
-//         type: "Lamp",
-//         macAddress: "",
-//     },
-//     {
-//         name: "Fan-One",
-//         ConnectState: "Offline",
-//         uniqueState: {
-//             name: "Speed",
-//             value: "100",
-//             scale: "%"
-//         },
-//         state: "Off",
-//         moreText: "Delete",
-//         scenario: "Home",
-//         type: "Fan",
-//         macAddress: "",
-//     },
-//     {
-//         name: "LightSensor-One",
-//         ConnectState: "Online",
-//         uniqueState: {
-//             name: "Brightness",
-//             value: "80",
-//             scale: "%",
-//         },
-//         state: "On",
-//         moreText: "Delete",
-//         scenario: "Home",
-//         type: "Sensor",
-//         macAddress: "",
-//     },
-//     {
-//         name: "HumidSensor-One",
-//         ConnectState: "Online",
-//         uniqueState: {
-//             name: "Humidity",
-//             value: "80",
-//             scale: "%"
-//         },
-//         state: "On",
-//         moreText: "Delete",
-//         scenario: "Home",
-//         type: "Sensor",
-//         macAddress: "",
-//     },
-//     {
-//         name: "TempSensor-One",
-//         ConnectState: "Online",
-//         uniqueState: {
-//             name: "Celsius",
-//             value: "27",
-//             scale: "℃"
-//         },
-//         state: "On",
-//         moreText: "Delete",
-//         scenario: "Home",
-//         type: "Sensor",
-//         macAddress: "",
-//     }
-// ])
 </script>
 
 <style scoped>

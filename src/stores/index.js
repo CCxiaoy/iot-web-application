@@ -58,6 +58,7 @@ const useInfosStore = defineStore("store", {
             this.darkCoverFlag = newVal;
         },
         closeDarkCover() {
+            console.log("See", 2);
             this.changeDarkCoverFlag(false);
         },
         openDarkCover() {

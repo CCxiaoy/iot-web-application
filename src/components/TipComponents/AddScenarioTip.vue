@@ -11,6 +11,7 @@
                 {{ confirmInfo }}
             </div>
             <div
+                @click="closeSelfWindow"
                 class="bg-authiraryColor-redMedium rounded-2xl text-tipDeleteTitle btnInfoW h-7 flex justify-center content-center mr-2">
                 {{ cancelInfo }}
             </div>
@@ -20,6 +21,21 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import useInfosStore from '../../stores';
+
+const emits = defineEmits(['closeAddScenarioTip']);
+
+// import center store
+const store = useInfosStore();
+
+// import method of openDarkCover
+const closeDarkCover = store.closeDarkCover;
+
+// method to close this Tip window self / abort operation
+const closeSelfWindow = () => {
+    emits('closeAddScenarioTip');
+    closeDarkCover();
+}
 
 const scenarioValue = ref("");
 const scenarioPlaceholder = ref("Type here!");

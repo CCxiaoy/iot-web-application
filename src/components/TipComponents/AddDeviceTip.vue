@@ -81,41 +81,6 @@ const macAddressValue = ref("");
 const confirmInfo = ref("ADD");
 const cancelInfo = ref("CANCEL");
 
-// 这里场景类也需要修改
-// const AllScenarios = reactive([
-//     {
-//         id: "Home",
-//         title: "Home",
-//     },
-//     {
-//         id: "Living Room",
-//         title: "Living Room",
-//     },
-// ]);
-
-// 这里类型需要修改
-// const allCategories = reactive([
-//     {
-//         id: "All",
-//         title: "All",
-//         url: "/",
-//     },
-//     {
-//         id: "Lamp",
-//         title: "Lamp",
-//         url: "/lamp",
-//     },
-//     {
-//         id: "Fan",
-//         title: "Fan",
-//         url: "/fan",
-//     },
-//     {
-//         id: "Sensor",
-//         title: "Sensor",
-//         url: "/sensor",
-//     }
-// ])
 </script>
 
 <style scoped>
