@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { createDevice } from '../Tools/StoreOperations/createNewDeviceObj';
+import { createScenario } from '../Tools/StoreOperations/createNewScenarioObj';
 
 const useInfosStore = defineStore("store", {
     // data store
@@ -69,7 +70,7 @@ const useInfosStore = defineStore("store", {
             const newDevice = JSON.parse(JSON.stringify(createDevice(deviceScenario, deviceType, deviceName, macAddress)));
             this.devices.push(newDevice)
         },
-        // delete Existed Device
+        // Delete Existed Device
         deleteOldDevice(deviceName) {
             let index, found = false;
             for(index = 0; index < this.devices.length; index++) {
@@ -81,7 +82,12 @@ const useInfosStore = defineStore("store", {
             if(found) {
                 this.devices.splice(index, 1);
             }
-        }
+        },
+        // Add New Scenario
+        addNewScenario(title) {
+            const newScenario = JSON.parse(JSON.stringify(createScenario(title)));
+            this.scenarios.push(newScenario);
+        },
     },
     // data persist
     persist: true,

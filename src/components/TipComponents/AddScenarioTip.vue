@@ -7,6 +7,7 @@
         </div>
         <div class="flex justify-end mt-4">
             <div
+                @click="addScenario"
                 class="bg-authiraryColor-blueMedium rounded-2xl text-tipDeleteTitle btnInfoW h-7 flex justify-center content-center mr-2">
                 {{ confirmInfo }}
             </div>
@@ -33,6 +34,14 @@ const closeDarkCover = store.closeDarkCover;
 
 // method to close this Tip window self / abort operation
 const closeSelfWindow = () => {
+    emits('closeAddScenarioTip');
+    closeDarkCover();
+}
+
+const addNewScenario = store.addNewScenario;
+
+const addScenario = () => {
+    addNewScenario(scenarioValue.value);
     emits('closeAddScenarioTip');
     closeDarkCover();
 }

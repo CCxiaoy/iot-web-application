@@ -9,7 +9,7 @@
             <IconPreviousPage class="w-8 h-8"></IconPreviousPage>
         </i>
         <div class="text-scenariotitle italic font-bold flex-grow flex justify-center content-center">{{
-            AllScenarios[currentPage].title }}</div>
+            scenarios[currentPage].title }}</div>
         <i
             class="w-16 h-8 mr-4 rounded-2xl border-2 border-borderGray-medium bg-themeColor-lightest flex justify-center content-center">
             <IconNextPage class="w-8 h-8"></IconNextPage>
@@ -31,6 +31,7 @@ import IconNextPage from "../icons/IconNextPage.vue";
 import IconNewScenario from "../icons/IconNewScenario.vue";
 import AddScenarioTip from "../TipComponents/AddScenarioTip.vue";
 import useInfosStore from "../../stores";
+import { storeToRefs } from 'pinia'
 
 const currentPage = ref(0);
 
@@ -52,17 +53,19 @@ const closeAddScenarioTip = () => {
     addScenarioTipFlag.value = false;
 }
 
+const { scenarios } = storeToRefs(store);
+
 // 以下这块需要改造成 使用 center store
-const AllScenarios = reactive([
-    {
-        id: "Home",
-        title: "Home",
-    },
-    {
-        id: "Living Room",
-        title: "Living Room",
-    }
-]);
+// const AllScenarios = reactive([
+//     {
+//         id: "Home",
+//         title: "Home",
+//     },
+//     {
+//         id: "Living Room",
+//         title: "Living Room",
+//     }
+// ]);
 </script>
 
 <style scoped></style>
