@@ -37,6 +37,7 @@ import IconConnected from "../../icons/IconConnected.vue";
 import IconDisconnected from "../../icons/IconDisconnected.vue";
 import DeleteDeviceTip from "../../TipComponents/DeleteDeviceTip.vue";
 import useInfosStore from "../../../stores";
+import { subscribeDevice } from "../../../Tools/MqttOperations/mqttIndex";
 
 const store = useInfosStore();
 
@@ -44,6 +45,17 @@ const that = defineProps({
     deviceInfo: Object
 })
 const deviceInfo = that.deviceInfo;
+
+const client = store.client;
+// macAddrees, client, type
+client.on('connect', () => {
+    subscribeDevice(deviceInfo.macAddress , client, deviceInfo.type);
+
+    console.log("SEE!", 1, deviceInfo.macAddress , client, deviceInfo.type);
+    client.on('message', (topic, message) => {
+        console.log(topic + '返回的数据：' + message.toString())
+    });
+});
 
 // import method of openDarkCover
 const openDarkCover = store.openDarkCover;

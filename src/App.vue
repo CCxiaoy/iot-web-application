@@ -18,8 +18,12 @@ const store = useInfosStore();
 
 const { darkCoverFlag } = storeToRefs(store);
 
-const closeDarkCover = store.closeDarkCover;
+// reflesh mqtt connection automatically
+const renewMqttConnection = store.renewMqttConnection;
+renewMqttConnection();
 
+// close darkcover automatically after refleshing or closing windows acidently
+const closeDarkCover = store.closeDarkCover;
 window.addEventListener('beforeunload', closeDarkCover);
 </script>
 

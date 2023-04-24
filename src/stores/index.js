@@ -4,12 +4,14 @@ import { createScenario } from '../Tools/StoreOperations/createNewScenarioObj';
 import { calculateScenario } from '../Tools/StoreOperations/calculateScenarioPage';
 import { scenarioFilter } from '../Tools/StoreOperations/FilterOperations/scenarioFilter';
 import { typeFilter } from '../Tools/StoreOperations/FilterOperations/typeFilter';
+import { connectToMQTTServer, initialConnection} from '../Tools/MqttOperations/mqttIndex.js';
 
 const useInfosStore = defineStore("store", {
     // data store
     state: () => {
         return {
             darkCoverFlag: false,
+            client: {},
             currentSideNav: "All",
             currentPage: 0,
             devices: [
@@ -163,7 +165,13 @@ const useInfosStore = defineStore("store", {
         // Change currentSideNav
         sideNavChange(newNav) {
             this.currentSideNav = newNav;
-        }
+        },
+        // renew mqtt connection
+        renewMqttConnection() {
+            this.client = connectToMQTTServer();
+            initialConnection(this.client);
+        },
+        // Single Device Info manipulate
     },
     // data persist
     persist: true,

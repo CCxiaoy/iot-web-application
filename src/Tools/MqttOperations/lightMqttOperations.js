@@ -31,6 +31,7 @@ const clostLight = (macAddrees, client) => {
 };
 
 const subscribeLightState = (macAddrees, client) => {
+  console.log("SEE!", 3);
   const mqttTopic = lightPrefix.status + macAddrees;
   client.subscribe(mqttTopic, subscribeOptions);
 };
