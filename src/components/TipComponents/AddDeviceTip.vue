@@ -58,8 +58,8 @@ const closeDarkCover = store.closeDarkCover;
 const emits = defineEmits(['closeAddDeviceTip'])
 // method to close this Tip window self / abort operation
 const closeSelfWindow = () => {
-    closeDarkCover();
     emits('closeAddDeviceTip');
+    closeDarkCover();
 }
 
 const tipInfoScenario = ref("Scenario : ");
