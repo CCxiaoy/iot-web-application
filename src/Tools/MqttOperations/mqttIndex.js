@@ -1,6 +1,8 @@
 import mqtt from "mqtt/dist/mqtt.js";
 import { subscribeAllLightState, unsubscribeAllLightState, openLight, closeLight } from "./lightMqttOperations";
 import { closeLightSensor, openLightSensor, subscribeAllLightSensorState, unsubscribeAllLightSensorState } from "./brightnessMqtt";
+import { closeHumidSensor, openHumidSensor, subscribeAllHumidSensorState, unsubscribeAllHumidSensorState } from "./humidMqtt";
+import { closeTemperatureSensor, openTemperatureSensor, subscribeAllTemperatureSensorState, unsubscribeAllTemperatureSensorState } from "./temperatureMqtt";
 
 const mqttServerUrl = 'ws://test.ranye-iot.net';
 
@@ -58,12 +60,12 @@ const subscribeDevice = (macAddrees, client, type) => {
             
             break;
 
-        case "BrightnessSensor":
-            
+        case "HumidSensor":
+            subscribeAllHumidSensorState(macAddrees, client);
             break;
 
         case "TemperatureSensor":
-            
+            subscribeAllTemperatureSensorState(macAddrees, client);
             break;
     
         default:
@@ -87,11 +89,11 @@ const unsubscribeDevice = (macAddrees, client, type) => {
             break;
 
         case "HumidSensor":
-            
+            unsubscribeAllHumidSensorState(macAddrees, client);
             break;
 
         case "TemperatureSensor":
-            
+            unsubscribeAllTemperatureSensorState(macAddrees, client);
             break;
     
         default:
@@ -129,17 +131,25 @@ const switchDeviceState = (macAddrees, client, type, state) => {
             }
             break;
 
-        // case value:
+        case "Fan":
             
-        //     break;
+            break;
 
-        // case value:
-            
-        //     break;
+        case "HumidSensor":
+            if(isOpenOrClose(state)) {
+                openHumidSensor(macAddrees, client);
+            } else {
+                closeHumidSensor(macAddrees, client);
+            }
+            break;
 
-        // case value:
-            
-        //     break;
+        case "TemperatureSensor":
+            if(isOpenOrClose(state)) {
+                openTemperatureSensor(macAddrees, client);
+            } else {
+                closeTemperatureSensor(macAddrees, client);
+            }
+            break;
     
         default:
             break;

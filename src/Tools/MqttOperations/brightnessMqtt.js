@@ -17,7 +17,7 @@ const lightSensorState = {
 const changeLightSensorState = async (macAddrees, client, lightSensorState) => {
     const mqttTopic = lightSensorPrefix.switch + macAddrees;
     console.log("SEE!", mqttTopic, macAddrees, client, lightSensorState);
-  client.publish(mqttTopic, lightSensorState, publishOptions);
+    client.publish(mqttTopic, lightSensorState, publishOptions);
 };
 
 // method to open light

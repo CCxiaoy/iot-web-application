@@ -22,6 +22,18 @@ import {
   isLightSensorStatusTopic,
   isLightSensorTopic,
 } from "../Tools/MqttOperations/brightnessMqtt";
+import {
+  isHumidSensorConnectionStatusTopic,
+  isHumidSensorPowerStatusTopic,
+  isHumidSensorStatusTopic,
+  isHumidSensorTopic,
+} from "../Tools/MqttOperations/humidMqtt";
+import {
+  isTemperatureSensorConnectionStatusTopic,
+  isTemperatureSensorPowerStatusTopic,
+  isTemperatureSensorStatusTopic,
+  isTemperatureSensorTopic,
+} from "../Tools/MqttOperations/temperatureMqtt";
 
 const useInfosStore = defineStore("store", {
   // data store
@@ -167,12 +179,18 @@ const useInfosStore = defineStore("store", {
         // if() {
 
         // }
-        // if() {
-
-        // }
-        // if() {
-
-        // }
+        // Humid Sensor's Topic
+        if (isHumidSensorTopic(topic)) {
+          this.updateHumidSensorDeviceInfo(topic, comingMessage, deviceName);
+        }
+        // Temperature Sensor's Topic
+        if (isTemperatureSensorTopic(topic)) {
+          this.updateTemperatureSensorDeviceInfo(
+            topic,
+            comingMessage,
+            deviceName
+          );
+        }
         console.log(topic + "返回的数据：" + message.toString());
       });
     },
@@ -260,6 +278,33 @@ const useInfosStore = defineStore("store", {
     updateLightSensorPowerState(message, deviceIndex) {
       this.devices[deviceIndex].uniqueState.value = message;
     },
+    // Fan
+    // Fan
+    // Fan
+    // Humid Sensor state update
+    updateHumidSensorState(message, deviceIndex) {
+      this.devices[deviceIndex].state = message;
+    },
+    // Humid Sensor connection state update
+    updateHumidSensorConnectionState(message, deviceIndex) {
+      this.devices[deviceIndex].connectState = message;
+    },
+    // Humid Sensor power state update
+    updateHumidSensorPowerState(message, deviceIndex) {
+      this.devices[deviceIndex].uniqueState.value = message;
+    },
+    // Temperature Sensor state update
+    updateTemperatureSensorState(message, deviceIndex) {
+      this.devices[deviceIndex].state = message;
+    },
+    // Temperature Sensor connection state update
+    updateTemperatureSensorConnectionState(message, deviceIndex) {
+      this.devices[deviceIndex].connectState = message;
+    },
+    // Temperature Sensor power state update
+    updateTemperatureSensorPowerState(message, deviceIndex) {
+      this.devices[deviceIndex].uniqueState.value = message;
+    },
     // Single Device Info manipulate
     // Lamp message entry function
     updateLampDeviceInfo(topic, message, deviceName) {
@@ -298,6 +343,42 @@ const useInfosStore = defineStore("store", {
       }
     },
     // Fan message entry function
+    // Humid Sensor entry function
+    updateHumidSensorDeviceInfo(topic, message, deviceName) {
+      let index;
+      for (index = 0; index < this.devices.length; index++) {
+        if (deviceName === this.devices[index].name) {
+          break;
+        }
+      }
+      if (isHumidSensorStatusTopic(topic)) {
+        this.updateHumidSensorState(message, index);
+      }
+      if (isHumidSensorConnectionStatusTopic(topic)) {
+        this.updateHumidSensorConnectionState(message, index);
+      }
+      if (isHumidSensorPowerStatusTopic(topic)) {
+        this.updateHumidSensorPowerState(message, index);
+      }
+    },
+    // Humid Sensor entry function
+    updateTemperatureSensorDeviceInfo(topic, message, deviceName) {
+      let index;
+      for (index = 0; index < this.devices.length; index++) {
+        if (deviceName === this.devices[index].name) {
+          break;
+        }
+      }
+      if (isTemperatureSensorStatusTopic(topic)) {
+        this.updateTemperatureSensorState(message, index);
+      }
+      if (isTemperatureSensorConnectionStatusTopic(topic)) {
+        this.updateTemperatureSensorConnectionState(message, index);
+      }
+      if (isTemperatureSensorPowerStatusTopic(topic)) {
+        this.updateTemperatureSensorPowerState(message, index);
+      }
+    },
   },
   // data persist
   persist: true,
