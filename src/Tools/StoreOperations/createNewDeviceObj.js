@@ -6,8 +6,8 @@ const createLampDevice = (
 ) => {
   const newDevice = {
     name: deviceName,
-    connectState: "Online",
-    // connectState: "Offline",
+    // connectState: "Online",
+    connectState: "Offline",
     uniqueState: {
       name: "Light",
       value: "0",
@@ -56,8 +56,8 @@ const createBrightnessSensor = (
 ) => {
   const newDevice = {
     name: deviceName,
-    connectState: "Online",
-    // connectState: "Offline",
+    // connectState: "Online",
+    connectState: "Offline",
     uniqueState: {
       name: "Brightness",
       value: "80",
@@ -67,7 +67,7 @@ const createBrightnessSensor = (
     // state: "Off",
     moreText: "Delete",
     scenario: deviceScenario,
-    type: deviceType, // Lamp
+    type: deviceType, // BrightnessSensor
     macAddress: macAddress,
   };
   return newDevice;
@@ -92,7 +92,7 @@ const createHumidSensor = (
     // state: "Off",
     moreText: "Delete",
     scenario: deviceScenario,
-    type: deviceType, // Lamp
+    type: deviceType, // HumidSensor
     macAddress: macAddress,
   };
   return newDevice;
@@ -117,7 +117,7 @@ const createTemperatureDevice = (
     // state: "Off",
     moreText: "Delete",
     scenario: deviceScenario,
-    type: deviceType, // Lamp
+    type: deviceType, // TemperatureSensor
     macAddress: macAddress,
   };
   return newDevice;

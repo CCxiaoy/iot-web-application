@@ -39,7 +39,6 @@ import IconDisconnected from "../../icons/IconDisconnected.vue";
 import DeleteDeviceTip from "../../TipComponents/DeleteDeviceTip.vue";
 import useInfosStore from "../../../stores";
 import { subscribeDevice, switchDeviceState } from "../../../Tools/MqttOperations/mqttIndex";
-import { isLampTopic } from "../../../Tools/MqttOperations/lightMqttOperations"
 
 const store = useInfosStore();
 

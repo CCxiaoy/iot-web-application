@@ -1,5 +1,6 @@
 import mqtt from "mqtt/dist/mqtt.js";
 import { subscribeAllLightState, unsubscribeAllLightState, openLight, closeLight } from "./lightMqttOperations";
+import { closeLightSensor, openLightSensor, subscribeAllLightSensorState, unsubscribeAllLightSensorState } from "./brightnessMqtt";
 
 const mqttServerUrl = 'ws://test.ranye-iot.net';
 
@@ -49,21 +50,21 @@ const subscribeDevice = (macAddrees, client, type) => {
             subscribeAllLightState(macAddrees, client);
             break;
 
-        // case value:
-            
-        //     break;
+        case "BrightnessSensor":
+            subscribeAllLightSensorState(macAddrees, client);
+            break;
 
-        // case value:
+        case "Fan":
             
-        //     break;
+            break;
 
-        // case value:
+        case "BrightnessSensor":
             
-        //     break;
+            break;
 
-        // case value:
+        case "TemperatureSensor":
             
-        //     break;
+            break;
     
         default:
             break;
@@ -77,21 +78,21 @@ const unsubscribeDevice = (macAddrees, client, type) => {
             unsubscribeAllLightState(macAddrees, client);
             break;
 
-        // case value:
-            
-        //     break;
+        case "BrightnessSensor":
+            unsubscribeAllLightSensorState(macAddrees, client);
+            break;
 
-        // case value:
+        case "Fan":
             
-        //     break;
+            break;
 
-        // case value:
+        case "HumidSensor":
             
-        //     break;
+            break;
 
-        // case value:
+        case "TemperatureSensor":
             
-        //     break;
+            break;
     
         default:
             break;
@@ -120,9 +121,13 @@ const switchDeviceState = (macAddrees, client, type, state) => {
             }
             break;
 
-        // case value:
-            
-        //     break;
+        case "BrightnessSensor":
+            if(isOpenOrClose(state)) {
+                openLightSensor(macAddrees, client);
+            } else {
+                closeLightSensor(macAddrees, client);
+            }
+            break;
 
         // case value:
             
