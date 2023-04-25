@@ -4,7 +4,8 @@ import { createScenario } from '../Tools/StoreOperations/createNewScenarioObj';
 import { calculateScenario } from '../Tools/StoreOperations/calculateScenarioPage';
 import { scenarioFilter } from '../Tools/StoreOperations/FilterOperations/scenarioFilter';
 import { typeFilter } from '../Tools/StoreOperations/FilterOperations/typeFilter';
-import { connectToMQTTServer, initialConnection} from '../Tools/MqttOperations/mqttIndex.js';
+import { connectToMQTTServer, initialConnection, subscribeDevice, unsubscribeDevice} from '../Tools/MqttOperations/mqttIndex.js';
+import { isLampTopic, isLampStatusTopic, isLampConnectionStatusTopic, isLampPowerStatusTopic } from '../Tools/MqttOperations/lightMqttOperations';
 
 const useInfosStore = defineStore("store", {
     // data store
@@ -17,7 +18,7 @@ const useInfosStore = defineStore("store", {
             devices: [
                 // {
                 //     name: "Bulb-One",
-                //     ConnectState: "Online",
+                //     connectState: "Online",
                 //     uniqueState: {
                 //         name: "Light",
                 //         value: "100",
@@ -123,7 +124,34 @@ const useInfosStore = defineStore("store", {
         // Add New Device
         addNewDevice(deviceScenario, deviceType, deviceName, macAddress) {
             const newDevice = JSON.parse(JSON.stringify(createDevice(deviceScenario, deviceType, deviceName, macAddress)));
-            this.devices.push(newDevice)
+            this.devices.push(newDevice);
+            subscribeDevice(newDevice.macAddress, this.client, newDevice.type);
+            this.handleNewDeviceCallback(newDevice.name);
+        },
+        // callback to handle New Device's coming Topic
+        handleNewDeviceCallback(deviceName) {
+            this.client.on('message', (topic, message) => {
+                // process subscribe message
+                let comingMessage = message.toString();
+                // Lamp's Topic
+                if(isLampTopic(topic)) {
+                    this.updateLampDeviceInfo(topic, comingMessage, deviceName);
+                }
+                // Fan's Topic
+                // if() {
+        
+                // }
+                // if() {
+                    
+                // }
+                // if() {
+                    
+                // }
+                // if() {
+                    
+                // }
+                console.log(topic + '返回的数据：' + message.toString())
+            });
         },
         // Delete Existed Device
         deleteOldDevice(deviceName) {
@@ -131,6 +159,7 @@ const useInfosStore = defineStore("store", {
             for(index = 0; index < this.devices.length; index++) {
                 if(this.devices[index].name === deviceName) {
                     found = true;
+                    unsubscribeDevice(this.devices[index].macAddress, this.client, this.devices[index].type);
                     break;
                 }
             }
@@ -171,7 +200,38 @@ const useInfosStore = defineStore("store", {
             this.client = connectToMQTTServer();
             initialConnection(this.client);
         },
+        // Lamp state update
+        updateLampState(message, deviceIndex) {
+            this.devices[deviceIndex].state = message;
+        },
+        // Lamp connection state update
+        updateLampConnectionState(message, deviceIndex) {
+            this.devices[deviceIndex].connectState = message;
+        },
+        // Lamp power state update
+        updateLampPowerState(message, deviceIndex) {
+            this.devices[deviceIndex].uniqueState.value = message;
+        },
         // Single Device Info manipulate
+        // Lamp message entry function
+        updateLampDeviceInfo(topic, message, deviceName) {
+            let index;
+            for(index = 0; index < this.devices.length; index++) {
+                if(deviceName === this.devices[index].name) {
+                    break;
+                }
+            }
+            if(isLampStatusTopic(topic)) {
+                this.updateLampState(message, index);
+            }
+            if(isLampConnectionStatusTopic(topic)) {
+                this.updateLampConnectionState(message, index);
+            }
+            if(isLampPowerStatusTopic(topic)) {
+                this.updateLampPowerState(message, index);
+            }
+        },
+        // Fan message entry function
     },
     // data persist
     persist: true,

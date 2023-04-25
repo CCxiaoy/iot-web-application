@@ -6,15 +6,15 @@ const createLampDevice = (
 ) => {
   const newDevice = {
     name: deviceName,
-    ConnectState: "Online",
-    // ConnectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Light",
-      value: "100",
+      value: "0",
       scale: "%",
     },
-    state: "On",
-    // state: "Off",
+    // state: "On",
+    state: "Off",
     moreText: "Delete",
     scenario: deviceScenario,
     type: deviceType, // Lamp
@@ -31,8 +31,8 @@ const createFanDevice = (
 ) => {
   const newDevice = {
     name: deviceName,
-    ConnectState: "Online",
-    // ConnectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Speed",
       value: "100",
@@ -56,8 +56,8 @@ const createBrightnessSensor = (
 ) => {
   const newDevice = {
     name: deviceName,
-    ConnectState: "Online",
-    // ConnectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Brightness",
       value: "80",
@@ -81,8 +81,8 @@ const createHumidSensor = (
 ) => {
   const newDevice = {
     name: deviceName,
-    ConnectState: "Online",
-    // ConnectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Humidity",
       value: "80",
@@ -106,8 +106,8 @@ const createTemperatureDevice = (
 ) => {
   const newDevice = {
     name: deviceName,
-    ConnectState: "Online",
-    // ConnectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Celsius",
       value: "27",
@@ -201,7 +201,7 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 
 // {
 //     name: "Bulb-One",
-//     ConnectState: "Online",
+//     connectState: "Online",
 //     uniqueState: {
 //         name: "Light",
 //         value: "100",
@@ -215,7 +215,7 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 // },
 // {
 //     name: "Fan-One",
-//     ConnectState: "Offline",
+//     connectState: "Offline",
 //     uniqueState: {
 //         name: "Speed",
 //         value: "100",
@@ -229,7 +229,7 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 // },
 // {
 //     name: "LightSensor-One",
-//     ConnectState: "Online",
+//     connectState: "Online",
 //     uniqueState: {
 //         name: "Brightness",
 //         value: "80",
@@ -243,7 +243,7 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 // },
 // {
 //     name: "HumidSensor-One",
-//     ConnectState: "Online",
+//     connectState: "Online",
 //     uniqueState: {
 //         name: "Humidity",
 //         value: "80",
@@ -257,7 +257,7 @@ const createDevice = (deviceScenario, deviceType, deviceName, macAddress) => {
 // },
 // {
 //     name: "TempSensor-One",
-//     ConnectState: "Online",
+//     connectState: "Online",
 //     uniqueState: {
 //         name: "Celsius",
 //         value: "27",

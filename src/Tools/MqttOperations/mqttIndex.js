@@ -1,5 +1,5 @@
 import mqtt from "mqtt/dist/mqtt.js";
-import { subscribeLightState } from "./lightMqttOperations";
+import { subscribeAllLightState, unsubscribeAllLightState } from "./lightMqttOperations";
 
 const mqttServerUrl = 'ws://test.ranye-iot.net';
 
@@ -26,6 +26,7 @@ const connectToMQTTServer = () => {
 
 // initial method
 const initialConnection = (client) => {
+    // 连接事件
     client.on('connect', e => {
         console.log('连接成功', e);
     })
@@ -45,8 +46,35 @@ const initialConnection = (client) => {
 const subscribeDevice = (macAddrees, client, type) => {
     switch (type) {
         case "Lamp":
-            console.log("SEE!", 2, macAddrees, client, type);
-            subscribeLightState(macAddrees, client);
+            subscribeAllLightState(macAddrees, client);
+            break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+    
+        default:
+            break;
+    }
+}
+
+// un-subscribe method
+const unsubscribeDevice = (macAddrees, client, type) => {
+    switch (type) {
+        case "Lamp":
+            unsubscribeAllLightState(macAddrees, client);
             break;
 
         // case value:
@@ -74,6 +102,7 @@ export {
     connectToMQTTServer,
     initialConnection,
     subscribeDevice,
+    unsubscribeDevice,
 }
 
 //连接
