@@ -19,7 +19,8 @@
             </p>
         </div>
         <div class="flex justify-between px-4 py-5 relative">
-            <div class="deviceBtn rounded-2xl text-deviceTitle flex justify-center content-center font-bold"
+            <div @click="switchDevice()" 
+                class="deviceBtn rounded-2xl text-deviceTitle flex justify-center content-center font-bold"
                 :class="{ deviceOn: deviceInfo.state === 'On', deviceOff: deviceInfo.state !== 'On' }">{{
                     deviceInfo.state }}</div>
             <div @click="openDeleteDeviceTip"
@@ -37,7 +38,7 @@ import IconConnected from "../../icons/IconConnected.vue";
 import IconDisconnected from "../../icons/IconDisconnected.vue";
 import DeleteDeviceTip from "../../TipComponents/DeleteDeviceTip.vue";
 import useInfosStore from "../../../stores";
-import { subscribeDevice } from "../../../Tools/MqttOperations/mqttIndex";
+import { subscribeDevice, switchDeviceState } from "../../../Tools/MqttOperations/mqttIndex";
 import { isLampTopic } from "../../../Tools/MqttOperations/lightMqttOperations"
 
 const store = useInfosStore();
@@ -57,11 +58,20 @@ client.on('connect', () => {
     handleNewDeviceCallback(deviceInfo.name);
 });
 
+// switch to control 
+// when btn shows on, click it means to close it, then it changes to off
+// when btn shows off, click it means to close it, then it changes to on
+const switchDevice = () => {
+    switchDeviceState(deviceInfo.macAddress , client, deviceInfo.type, deviceInfo.state);
+}
+
 // import method of openDarkCover
 const openDarkCover = store.openDarkCover;
 
+// variable controls the showing of delteDviceTip
 const deleteDeviceTipFlag = ref(false);
 
+// show delteDviceTip
 const openDeleteDeviceTip = () => {
     openDarkCover();
     deleteDeviceTipFlag.value = true;

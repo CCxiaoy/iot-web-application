@@ -25,7 +25,7 @@ const openLight = (macAddrees, client) => {
 };
 
 // method to close light
-const clostLight = (macAddrees, client) => {
+const closeLight = (macAddrees, client) => {
   changeLightState(macAddrees, client, lightState.close);
 };
 
@@ -123,7 +123,7 @@ const isLampPowerStatusTopic = (topic) => {
 
 export {
   openLight,
-  clostLight,
+  closeLight,
   subscribeAllLightState,
   subscribeLightState,
   subscribeLightConnectionState,

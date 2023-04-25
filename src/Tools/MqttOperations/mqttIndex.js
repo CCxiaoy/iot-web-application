@@ -1,5 +1,5 @@
 import mqtt from "mqtt/dist/mqtt.js";
-import { subscribeAllLightState, unsubscribeAllLightState } from "./lightMqttOperations";
+import { subscribeAllLightState, unsubscribeAllLightState, openLight, closeLight } from "./lightMqttOperations";
 
 const mqttServerUrl = 'ws://test.ranye-iot.net';
 
@@ -98,11 +98,56 @@ const unsubscribeDevice = (macAddrees, client, type) => {
     }
 }
 
+// open device method
+// return true => then open device | false => then close device
+const isOpenOrClose = (deviceState) => {
+    if(deviceState === 'On') {
+        return false;
+    } 
+    else {
+        return true; 
+    }
+}
+
+// switch Device State (on / off)
+const switchDeviceState = (macAddrees, client, type, state) => {
+    switch (type) {
+        case "Lamp":
+            if(isOpenOrClose(state)) {
+                openLight(macAddrees, client);
+            } else {
+                closeLight(macAddrees, client);
+            }
+            break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+
+        // case value:
+            
+        //     break;
+    
+        default:
+            break;
+    }
+}
+
+
 export {
     connectToMQTTServer,
     initialConnection,
     subscribeDevice,
     unsubscribeDevice,
+    switchDeviceState,
 }
 
 //连接
