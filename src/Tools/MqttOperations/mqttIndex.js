@@ -3,6 +3,7 @@ import { subscribeAllLightState, unsubscribeAllLightState, openLight, closeLight
 import { closeLightSensor, openLightSensor, subscribeAllLightSensorState, unsubscribeAllLightSensorState } from "./brightnessMqtt";
 import { closeHumidSensor, openHumidSensor, subscribeAllHumidSensorState, unsubscribeAllHumidSensorState } from "./humidMqtt";
 import { closeTemperatureSensor, openTemperatureSensor, subscribeAllTemperatureSensorState, unsubscribeAllTemperatureSensorState } from "./temperatureMqtt";
+import { closeFan, openFan, subscribeAllFanState, unsubscribeAllFanState } from "./fanMqtt";
 
 const mqttServerUrl = 'ws://test.ranye-iot.net';
 
@@ -57,7 +58,7 @@ const subscribeDevice = (macAddrees, client, type) => {
             break;
 
         case "Fan":
-            
+            subscribeAllFanState(macAddrees, client);
             break;
 
         case "HumidSensor":
@@ -85,7 +86,7 @@ const unsubscribeDevice = (macAddrees, client, type) => {
             break;
 
         case "Fan":
-            
+            unsubscribeAllFanState(macAddrees, client);
             break;
 
         case "HumidSensor":
@@ -132,7 +133,11 @@ const switchDeviceState = (macAddrees, client, type, state) => {
             break;
 
         case "Fan":
-            
+            if(isOpenOrClose(state)) {
+                openFan(macAddrees, client);
+            } else {
+                closeFan(macAddrees, client);
+            }
             break;
 
         case "HumidSensor":

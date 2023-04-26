@@ -34,6 +34,12 @@ import {
   isTemperatureSensorStatusTopic,
   isTemperatureSensorTopic,
 } from "../Tools/MqttOperations/temperatureMqtt";
+import {
+  isFanConnectionStatusTopic,
+  isFanPowerStatusTopic,
+  isFanStatusTopic,
+  isFanTopic,
+} from "../Tools/MqttOperations/fanMqtt";
 
 const useInfosStore = defineStore("store", {
   // data store
@@ -176,9 +182,9 @@ const useInfosStore = defineStore("store", {
           this.updateLightSensorDeviceInfo(topic, comingMessage, deviceName);
         }
         // Fan's Topic
-        // if() {
-
-        // }
+        if (isFanTopic(topic)) {
+          this.updateFanDeviceInfo(topic, comingMessage, deviceName);
+        }
         // Humid Sensor's Topic
         if (isHumidSensorTopic(topic)) {
           this.updateHumidSensorDeviceInfo(topic, comingMessage, deviceName);
@@ -278,9 +284,18 @@ const useInfosStore = defineStore("store", {
     updateLightSensorPowerState(message, deviceIndex) {
       this.devices[deviceIndex].uniqueState.value = message;
     },
-    // Fan
-    // Fan
-    // Fan
+    // Fan state update
+    updateFanState(message, deviceIndex) {
+      this.devices[deviceIndex].state = message;
+    },
+    // Fan connection state update
+    updateFanConnectionState(message, deviceIndex) {
+      this.devices[deviceIndex].connectState = message;
+    },
+    // Fan power state update
+    updateFanPowerState(message, deviceIndex) {
+      this.devices[deviceIndex].uniqueState.value = message;
+    },
     // Humid Sensor state update
     updateHumidSensorState(message, deviceIndex) {
       this.devices[deviceIndex].state = message;
@@ -343,6 +358,23 @@ const useInfosStore = defineStore("store", {
       }
     },
     // Fan message entry function
+    updateFanDeviceInfo(topic, message, deviceName) {
+      let index;
+      for (index = 0; index < this.devices.length; index++) {
+        if (deviceName === this.devices[index].name) {
+          break;
+        }
+      }
+      if (isFanStatusTopic(topic)) {
+        this.updateFanState(message, index);
+      }
+      if (isFanConnectionStatusTopic(topic)) {
+        this.updateFanConnectionState(message, index);
+      }
+      if (isFanPowerStatusTopic(topic)) {
+        this.updateFanPowerState(message, index);
+      }
+    },
     // Humid Sensor entry function
     updateHumidSensorDeviceInfo(topic, message, deviceName) {
       let index;
