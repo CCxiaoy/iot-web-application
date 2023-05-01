@@ -6,6 +6,7 @@ const lightPrefix = {
   connectionStatus: "autoLight-connection-status-",
   power: "autoLight-power-status-",
   switch: "autoLight-",
+  name: "Lamp",
 };
 
 const lightState = {
@@ -78,28 +79,44 @@ const unsubscribeAllLightState = (macAddrees, client) => {
   unsubscribeLightPowerState(macAddrees, client);
 };
 
-// method to determine if message received is a Lamp Topic
-const isLampTopic = (topic) => {
-  console.log(topic, topic.slice(0, lightPrefix.isAutoLight.length));
-  if (topic.slice(0, lightPrefix.isAutoLight.length) === lightPrefix.isAutoLight) {
+// method to determine if deviceName received is a Light device' name
+const isLampDeviceName = (deviceName) => {
+  if (
+    deviceName.length >= lightPrefix.name.length &&
+    deviceName.slice(0, lightPrefix.name.length) === lightPrefix.name
+  ) {
     return true;
   }
   return false;
 };
 
-// method to determine if message received is a Lamp "autoLight-status-"" Topic 
+// method to determine if message received is a Lamp Topic
+const isLampTopic = (topic) => {
+  // console.log(topic, topic.slice(0, lightPrefix.isAutoLight.length));
+  if (
+    topic.slice(0, lightPrefix.isAutoLight.length) === lightPrefix.isAutoLight
+  ) {
+    return true;
+  }
+  return false;
+};
+
+// method to determine if message received is a Lamp "autoLight-status-"" Topic
 const isLampStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, lightPrefix.status.length));
+  // console.log(topic, topic.slice(0, lightPrefix.status.length));
   if (topic.slice(0, lightPrefix.status.length) === lightPrefix.status) {
     return true;
   }
   return false;
 };
 
-// method to determine if message received is a Lamp "autoLight-connection-status-"" Topic 
+// method to determine if message received is a Lamp "autoLight-connection-status-"" Topic
 const isLampConnectionStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, lightPrefix.connectionStatus.length));
-  if (topic.slice(0, lightPrefix.connectionStatus.length) === lightPrefix.connectionStatus) {
+  // console.log(topic, topic.slice(0, lightPrefix.connectionStatus.length));
+  if (
+    topic.slice(0, lightPrefix.connectionStatus.length) ===
+    lightPrefix.connectionStatus
+  ) {
     return true;
   }
   return false;
@@ -107,8 +124,8 @@ const isLampConnectionStatusTopic = (topic) => {
 
 // power  power: "autoLight-power-status-",
 const isLampPowerStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, lightPrefix.power.length));
-  if (topic.slice(0,  lightPrefix.power.length) === lightPrefix.power) {
+  // console.log(topic, topic.slice(0, lightPrefix.power.length));
+  if (topic.slice(0, lightPrefix.power.length) === lightPrefix.power) {
     return true;
   }
   return false;
@@ -132,6 +149,7 @@ export {
   unsubscribeLightConnectionState,
   unsubscribeLightPowerState,
   unsubscribeAllLightState,
+  isLampDeviceName,
   isLampTopic,
   isLampStatusTopic,
   isLampConnectionStatusTopic,

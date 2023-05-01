@@ -80,7 +80,7 @@ const unsubscribeAllFanState = (macAddrees, client) => {
 
 // method to determine if message received is a Fan Topic
 const isFanTopic = (topic) => {
-  console.log(topic, topic.slice(0, fanPrefix.isAutoFan.length));
+  // console.log(topic, topic.slice(0, fanPrefix.isAutoFan.length));
   if (topic.slice(0, fanPrefix.isAutoFan.length) === fanPrefix.isAutoFan) {
     return true;
   }
@@ -89,7 +89,7 @@ const isFanTopic = (topic) => {
 
 // method to determine if message received is a Fan "autoFan-status-"" Topic 
 const isFanStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, fanPrefix.status.length));
+  // console.log(topic, topic.slice(0, fanPrefix.status.length));
   if (topic.slice(0, fanPrefix.status.length) === fanPrefix.status) {
     return true;
   }
@@ -98,7 +98,7 @@ const isFanStatusTopic = (topic) => {
 
 // method to determine if message received is a Fan "autoFan-connection-status-"" Topic 
 const isFanConnectionStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, fanPrefix.connectionStatus.length));
+  // console.log(topic, topic.slice(0, fanPrefix.connectionStatus.length));
   if (topic.slice(0, fanPrefix.connectionStatus.length) === fanPrefix.connectionStatus) {
     return true;
   }
@@ -107,7 +107,7 @@ const isFanConnectionStatusTopic = (topic) => {
 
 // power  power: "autoFan-power-status-",
 const isFanPowerStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, fanPrefix.power.length));
+  // console.log(topic, topic.slice(0, fanPrefix.power.length));
   if (topic.slice(0,  fanPrefix.power.length) === fanPrefix.power) {
     return true;
   }

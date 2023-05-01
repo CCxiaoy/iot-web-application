@@ -16,7 +16,7 @@ const humidSensorState = {
 // method to change light state
 const changeHumidSensorState = async (macAddrees, client, humidSensorState) => {
   const mqttTopic = humidSensorPrefix.switch + macAddrees;
-  console.log("SEE!", mqttTopic, macAddrees, client, humidSensorState);
+  // console.log("SEE!", mqttTopic, macAddrees, client, humidSensorState);
   client.publish(mqttTopic, humidSensorState, publishOptions);
 };
 
@@ -81,7 +81,7 @@ const unsubscribeAllHumidSensorState = (macAddrees, client) => {
 
 // method to determine if message received is a Light Sensor state Topic
 const isHumidSensorTopic = (topic) => {
-  console.log(topic, topic.slice(0, humidSensorPrefix.isHumidSensor.length));
+  // console.log(topic, topic.slice(0, humidSensorPrefix.isHumidSensor.length));
   if (
     topic.slice(0, humidSensorPrefix.isHumidSensor.length) ===
     humidSensorPrefix.isHumidSensor
@@ -93,7 +93,7 @@ const isHumidSensorTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor "autoLight-status-"" Topic
 const isHumidSensorStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, humidSensorPrefix.status.length));
+  // console.log(topic, topic.slice(0, humidSensorPrefix.status.length));
   if (
     topic.slice(0, humidSensorPrefix.status.length) === humidSensorPrefix.status
   ) {
@@ -104,7 +104,7 @@ const isHumidSensorStatusTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor connection "autoLight-connection-status-" Topic
 const isHumidSensorConnectionStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, humidSensorPrefix.connectionStatus.length));
+  // console.log(topic, topic.slice(0, humidSensorPrefix.connectionStatus.length));
   if (
     topic.slice(0, humidSensorPrefix.connectionStatus.length) ===
     humidSensorPrefix.connectionStatus
@@ -116,7 +116,7 @@ const isHumidSensorConnectionStatusTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor power: "autoLight-power-status-" Topic,
 const isHumidSensorPowerStatusTopic = (topic) => {
-  console.log(topic, topic.slice(0, humidSensorPrefix.power.length));
+  // console.log(topic, topic.slice(0, humidSensorPrefix.power.length));
   if (
     topic.slice(0, humidSensorPrefix.power.length) === humidSensorPrefix.power
   ) {

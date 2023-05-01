@@ -47,10 +47,6 @@ import useInfosStore from '../../stores';
 
 const store = useInfosStore();
 
-const addNewDevice = () => {
-    store.addNewDevice(scenarioValue.value, categoryValue.value, deviceNameValue.value, macAddressValue.value);
-    closeSelfWindow();
-}
 
 const closeDarkCover = store.closeDarkCover;
 
@@ -79,6 +75,10 @@ const macAddressValue = ref("");
 const confirmInfo = ref("ADD");
 const cancelInfo = ref("CANCEL");
 
+const addNewDevice = () => {
+    store.addNewDevice(scenarioValue.value, categoryValue.value, deviceNameValue.value, macAddressValue.value);
+    closeSelfWindow();
+}
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@ const temperatureSensorPrefix = {
   // method to change light state
   const changeTemperatureSensorState = async (macAddrees, client, temperatureSensorState) => {
       const mqttTopic = temperatureSensorPrefix.switch + macAddrees;
-      console.log("SEE!", mqttTopic, macAddrees, client, temperatureSensorState);
+      // console.log("SEE!", mqttTopic, macAddrees, client, temperatureSensorState);
       client.publish(mqttTopic, temperatureSensorState, publishOptions);
   };
   
@@ -82,7 +82,7 @@ const temperatureSensorPrefix = {
   
   // method to determine if message received is a Light Sensor state Topic
   const isTemperatureSensorTopic = (topic) => {
-    console.log(topic, topic.slice(0, temperatureSensorPrefix.isTemperatureSensor.length));
+    // console.log(topic, topic.slice(0, temperatureSensorPrefix.isTemperatureSensor.length));
     if (
       topic.slice(0, temperatureSensorPrefix.isTemperatureSensor.length) ===
       temperatureSensorPrefix.isTemperatureSensor
@@ -94,7 +94,7 @@ const temperatureSensorPrefix = {
   
   // method to determine if message received is a Light Sensor "autoLight-status-"" Topic
   const isTemperatureSensorStatusTopic = (topic) => {
-    console.log(topic, topic.slice(0, temperatureSensorPrefix.status.length));
+    // console.log(topic, topic.slice(0, temperatureSensorPrefix.status.length));
     if (
       topic.slice(0, temperatureSensorPrefix.status.length) === temperatureSensorPrefix.status
     ) {
@@ -105,7 +105,7 @@ const temperatureSensorPrefix = {
   
   // method to determine if message received is a Light Sensor connection "autoLight-connection-status-" Topic
   const isTemperatureSensorConnectionStatusTopic = (topic) => {
-    console.log(topic, topic.slice(0, temperatureSensorPrefix.connectionStatus.length));
+    // console.log(topic, topic.slice(0, temperatureSensorPrefix.connectionStatus.length));
     if (
       topic.slice(0, temperatureSensorPrefix.connectionStatus.length) ===
       temperatureSensorPrefix.connectionStatus
@@ -117,7 +117,7 @@ const temperatureSensorPrefix = {
   
   // method to determine if message received is a Light Sensor power: "autoLight-power-status-" Topic,
   const isTemperatureSensorPowerStatusTopic = (topic) => {
-    console.log(topic, topic.slice(0, temperatureSensorPrefix.power.length));
+    // console.log(topic, topic.slice(0, temperatureSensorPrefix.power.length));
     if (
       topic.slice(0, temperatureSensorPrefix.power.length) === temperatureSensorPrefix.power
     ) {
