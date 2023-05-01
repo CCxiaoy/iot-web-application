@@ -1,3 +1,5 @@
+const mqttServerUrl = 'ws://test.ranye-iot.net';
+
 const publishOptions = {
   qos: 1,
   retain: false,
@@ -10,4 +12,5 @@ const subscribeOptions = {
 export {
     publishOptions,
     subscribeOptions,
+    mqttServerUrl,
 }

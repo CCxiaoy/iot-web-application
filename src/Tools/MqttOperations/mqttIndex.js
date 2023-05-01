@@ -4,8 +4,7 @@ import { closeLightSensor, openLightSensor, subscribeAllLightSensorState, unsubs
 import { closeHumidSensor, openHumidSensor, subscribeAllHumidSensorState, unsubscribeAllHumidSensorState } from "./humidMqtt";
 import { closeTemperatureSensor, openTemperatureSensor, subscribeAllTemperatureSensorState, unsubscribeAllTemperatureSensorState } from "./temperatureMqtt";
 import { closeFan, openFan, subscribeAllFanState, unsubscribeAllFanState } from "./fanMqtt";
-
-const mqttServerUrl = 'ws://test.ranye-iot.net';
+import { mqttServerUrl } from "./Config/mqttConfig";
 
 const options = {
     // MQTT 服务器的用户名
