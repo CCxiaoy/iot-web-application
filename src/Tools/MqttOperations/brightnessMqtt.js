@@ -17,7 +17,6 @@ const lightSensorState = {
 // method to change light state
 const changeLightSensorState = async (macAddrees, client, lightSensorState) => {
   const mqttTopic = lightSensorPrefix.switch + macAddrees;
-  // console.log("SEE!", mqttTopic, macAddrees, client, lightSensorState);
   client.publish(mqttTopic, lightSensorState, publishOptions);
 };
 
@@ -94,7 +93,6 @@ const isLightSensorDeviceName = (deviceName) => {
 
 // method to determine if message received is a Light Sensor state Topic
 const isLightSensorTopic = (topic) => {
-  // console.log(topic, topic.slice(0, lightSensorPrefix.isLightSensor.length));
   if (
     topic.slice(0, lightSensorPrefix.isLightSensor.length) ===
     lightSensorPrefix.isLightSensor
@@ -106,7 +104,6 @@ const isLightSensorTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor "autoLight-status-"" Topic
 const isLightSensorStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, lightSensorPrefix.status.length));
   if (
     topic.slice(0, lightSensorPrefix.status.length) === lightSensorPrefix.status
   ) {
@@ -117,7 +114,6 @@ const isLightSensorStatusTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor connection "autoLight-connection-status-" Topic
 const isLightSensorConnectionStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, lightSensorPrefix.connectionStatus.length));
   if (
     topic.slice(0, lightSensorPrefix.connectionStatus.length) ===
     lightSensorPrefix.connectionStatus
@@ -129,7 +125,6 @@ const isLightSensorConnectionStatusTopic = (topic) => {
 
 // method to determine if message received is a Light Sensor power: "autoLight-power-status-" Topic,
 const isLightSensorPowerStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, lightSensorPrefix.power.length));
   if (
     topic.slice(0, lightSensorPrefix.power.length) === lightSensorPrefix.power
   ) {

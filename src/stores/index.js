@@ -26,18 +26,21 @@ import {
 } from "../Tools/MqttOperations/brightnessMqtt";
 import {
   isHumidSensorConnectionStatusTopic,
+  isHumidSensorDeviceName,
   isHumidSensorPowerStatusTopic,
   isHumidSensorStatusTopic,
   isHumidSensorTopic,
 } from "../Tools/MqttOperations/humidMqtt";
 import {
   isTemperatureSensorConnectionStatusTopic,
+  isTemperatureSensorDeviceName,
   isTemperatureSensorPowerStatusTopic,
   isTemperatureSensorStatusTopic,
   isTemperatureSensorTopic,
 } from "../Tools/MqttOperations/temperatureMqtt";
 import {
   isFanConnectionStatusTopic,
+  isFanDeviceName,
   isFanPowerStatusTopic,
   isFanStatusTopic,
   isFanTopic,
@@ -177,27 +180,27 @@ const useInfosStore = defineStore("store", {
         let comingMessage = message.toString();
         // Lamp's Topic
         if (isLampTopic(topic) && isLampDeviceName(deviceName)) {
-          console.log("upLamp", topic, comingMessage, deviceName);
+          // console.log("upLamp", topic, comingMessage, deviceName);
           this.updateLampDeviceInfo(topic, comingMessage, deviceName);
         }
         // Light Sensor's Topic
         if (isLightSensorTopic(topic) && isLightSensorDeviceName(deviceName)) {
-          console.log("upBtSensor", topic, comingMessage, deviceName);
+          // console.log("upBtSensor", topic, comingMessage, deviceName);
           this.updateLightSensorDeviceInfo(topic, comingMessage, deviceName);
         }
         // Fan's Topic
-        if (isFanTopic(topic)) {
-          console.log("upFan", topic, comingMessage, deviceName);
+        if (isFanTopic(topic) && isFanDeviceName(deviceName)) {
+          // console.log("upFan", topic, comingMessage, deviceName);
           this.updateFanDeviceInfo(topic, comingMessage, deviceName);
         }
         // Humid Sensor's Topic
-        if (isHumidSensorTopic(topic)) {
-          console.log("upHmSensor", topic, comingMessage, deviceName);
+        if (isHumidSensorTopic(topic) && isHumidSensorDeviceName(deviceName)) {
+          // console.log("upHmSensor", topic, comingMessage, deviceName);
           this.updateHumidSensorDeviceInfo(topic, comingMessage, deviceName);
         }
         // Temperature Sensor's Topic
-        if (isTemperatureSensorTopic(topic)) {
-          console.log("upTpSensor", topic, comingMessage, deviceName);
+        if (isTemperatureSensorTopic(topic) && isTemperatureSensorDeviceName(deviceName)) {
+          // console.log("upTpSensor", topic, comingMessage, deviceName);
           this.updateTemperatureSensorDeviceInfo(
             topic,
             comingMessage,

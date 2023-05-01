@@ -6,6 +6,7 @@ const fanPrefix = {
   connectionStatus: "autoFan-connection-status-",
   power: "autoFan-power-status-",
   switch: "autoFan-",
+  name: "Fan",
 };
 
 const fanState = {
@@ -78,28 +79,39 @@ const unsubscribeAllFanState = (macAddrees, client) => {
   unsubscribeFanPowerState(macAddrees, client);
 };
 
+// method to determine if deviceName received is a Fan device' name
+const isFanDeviceName = (deviceName) => {
+  if (
+    deviceName.length >= fanPrefix.name.length &&
+    deviceName.slice(0, fanPrefix.name.length) === fanPrefix.name
+  ) {
+    return true;
+  }
+  return false;
+};
+
 // method to determine if message received is a Fan Topic
 const isFanTopic = (topic) => {
-  // console.log(topic, topic.slice(0, fanPrefix.isAutoFan.length));
   if (topic.slice(0, fanPrefix.isAutoFan.length) === fanPrefix.isAutoFan) {
     return true;
   }
   return false;
 };
 
-// method to determine if message received is a Fan "autoFan-status-"" Topic 
+// method to determine if message received is a Fan "autoFan-status-"" Topic
 const isFanStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, fanPrefix.status.length));
   if (topic.slice(0, fanPrefix.status.length) === fanPrefix.status) {
     return true;
   }
   return false;
 };
 
-// method to determine if message received is a Fan "autoFan-connection-status-"" Topic 
+// method to determine if message received is a Fan "autoFan-connection-status-"" Topic
 const isFanConnectionStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, fanPrefix.connectionStatus.length));
-  if (topic.slice(0, fanPrefix.connectionStatus.length) === fanPrefix.connectionStatus) {
+  if (
+    topic.slice(0, fanPrefix.connectionStatus.length) ===
+    fanPrefix.connectionStatus
+  ) {
     return true;
   }
   return false;
@@ -107,8 +119,7 @@ const isFanConnectionStatusTopic = (topic) => {
 
 // power  power: "autoFan-power-status-",
 const isFanPowerStatusTopic = (topic) => {
-  // console.log(topic, topic.slice(0, fanPrefix.power.length));
-  if (topic.slice(0,  fanPrefix.power.length) === fanPrefix.power) {
+  if (topic.slice(0, fanPrefix.power.length) === fanPrefix.power) {
     return true;
   }
   return false;
@@ -132,6 +143,7 @@ export {
   unsubscribeFanConnectionState,
   unsubscribeFanPowerState,
   unsubscribeAllFanState,
+  isFanDeviceName,
   isFanTopic,
   isFanStatusTopic,
   isFanConnectionStatusTopic,

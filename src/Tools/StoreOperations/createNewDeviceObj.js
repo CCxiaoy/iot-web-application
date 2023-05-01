@@ -6,8 +6,8 @@ const createLampDevice = (
 ) => {
   const newDevice = {
     name: deviceName,
-    // connectState: "Online",
-    connectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Light",
       value: "0",
@@ -35,11 +35,11 @@ const createFanDevice = (
     // connectState: "Offline",
     uniqueState: {
       name: "Speed",
-      value: "100",
+      value: "0",
       scale: "%",
     },
-    state: "On",
-    // state: "Off",
+    // state: "On",
+    state: "Off",
     moreText: "Delete",
     scenario: deviceScenario,
     type: deviceType, // Lamp
@@ -56,11 +56,11 @@ const createBrightnessSensor = (
 ) => {
   const newDevice = {
     name: deviceName,
-    // connectState: "Online",
-    connectState: "Offline",
+    connectState: "Online",
+    // connectState: "Offline",
     uniqueState: {
       name: "Brightness",
-      value: "80",
+      value: "60",
       scale: "%",
     },
     state: "On",
@@ -85,7 +85,7 @@ const createHumidSensor = (
     // connectState: "Offline",
     uniqueState: {
       name: "Humidity",
-      value: "80",
+      value: "50",
       scale: "%",
     },
     state: "On",
