@@ -4,30 +4,7 @@ import { closeLightSensor, openLightSensor, subscribeAllLightSensorState, unsubs
 import { closeHumidSensor, openHumidSensor, subscribeAllHumidSensorState, unsubscribeAllHumidSensorState } from "./humidMqtt";
 import { closeTemperatureSensor, openTemperatureSensor, subscribeAllTemperatureSensorState, unsubscribeAllTemperatureSensorState } from "./temperatureMqtt";
 import { closeFan, openFan, subscribeAllFanState, unsubscribeAllFanState } from "./fanMqtt";
-import { mqttServerUrl } from "./Config/mqttConfig";
-
-// personal cloud service options
-const options = {
-    // MQTT 服务器的用户名
-    username: 'user',
-    // 密码
-    password: '123456',
-    keepalive: 10,
-    // 端口
-    port: 8083, 
-    // 客户端id
-    clientId: 'mqtt_' + Math.random()
-}
-
-// ranye public mqtt services options
-// const options = {
-//     keepalive: 10,
-//     // 端口
-//     port: 8080,
-//     // 客户端id
-//     clientId: 'mqtt_' + Math.random()
-// }
-
+import { mqttServerUrl, options} from "./Config/mqttConfig";
 
 // connect method
 const connectToMQTTServer = () => {
