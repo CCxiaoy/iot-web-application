@@ -6,19 +6,27 @@ import { closeTemperatureSensor, openTemperatureSensor, subscribeAllTemperatureS
 import { closeFan, openFan, subscribeAllFanState, unsubscribeAllFanState } from "./fanMqtt";
 import { mqttServerUrl } from "./Config/mqttConfig";
 
+// personal cloud service options
 const options = {
     // MQTT 服务器的用户名
-    // username: 'user',
+    username: 'user',
     // 密码
-    // password: '123456',
+    password: '123456',
     keepalive: 10,
     // 端口
-    port: 8080,
-    // port: 8083, 
-    // port: 8083,
+    port: 8083, 
     // 客户端id
     clientId: 'mqtt_' + Math.random()
 }
+
+// ranye public mqtt services options
+// const options = {
+//     keepalive: 10,
+//     // 端口
+//     port: 8080,
+//     // 客户端id
+//     clientId: 'mqtt_' + Math.random()
+// }
 
 
 // connect method
