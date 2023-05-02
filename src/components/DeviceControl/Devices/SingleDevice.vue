@@ -45,6 +45,7 @@ const store = useInfosStore();
 const that = defineProps({
     deviceInfo: Object
 })
+// Single device info
 const deviceInfo = that.deviceInfo;
 
 const client = store.client;

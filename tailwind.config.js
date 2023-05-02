@@ -33,7 +33,8 @@ module.exports = {
       deviceTitle: ['1rem', '1.75rem'],
       tipDeleteTitle: ['1rem', '1.75rem'],
       tipScenarioTitle: ['1.25rem', '1.75rem'],
-      tipAddDeviceTitle: ["1rem", "1,75rem"]
+      tipAddDeviceTitle: ["1rem", "1,75rem"],
+      tipAddAutomateTaskTitle: ["1rem", "1,75rem"],
     },
     extend: {},
   },
