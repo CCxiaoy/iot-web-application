@@ -1,5 +1,5 @@
 <template>
-    <div id="devicePanel" class="bg-themeColor-dark mx-12 rounded-3xl overflow-auto">
+    <div id="devicePanel" class="bg-themeColor-dark mx-12 tablet:mx-8 medium:mx-4 phone:mx-2  rounded-3xl overflow-auto">
         <div class="pt-10 pb-4 px-12 flex flex-row-reverse">
             <!-- Button about adding a new Device -->
             <i class="w-16 h-8 ml-4 rounded-2xl bg-themeColor-lightest flex justify-center content-center relative">
@@ -12,8 +12,8 @@
                 <AddAutomationTaskTip v-if="addAutomationTaskTipFlag" :devicesInfo="devices" @timerExecution="timerExecution" @closeAddAutomationTaskTip="closeAddAutomationTaskTip"  class="absolute right-1 top-10 z-20"></AddAutomationTaskTip>
             </i>
         </div>
-        <div class="flex flex-wrap px-7">
-            <SingleDevice class="mx-6 mt-12" v-for="device in devices" :key="device.name" :deviceInfo="device" ></SingleDevice>
+        <div class="flex flex-wrap tablet:px-7 px-1">
+            <SingleDevice class="tablet:mx-6 medium:mx-4 mx-2 tablet:mt-12 mt-6" v-for="device in devices" :key="device.name" :deviceInfo="device" ></SingleDevice>
         </div>
     </div>
 </template>

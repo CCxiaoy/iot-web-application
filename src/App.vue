@@ -1,7 +1,7 @@
 <template>
-  <div class="flex min-w-full relative">
-    <SideNavigatorView class="min-h-screen w-1/4"></SideNavigatorView>
-    <RouterView class="flex-3 w-3/4"></RouterView>
+  <div class="flex min-w-full relative overflow-x-hidden overflow-y-hidden">
+    <SideNavigatorView class="min-h-screen hidden tablet:block tablet:w-1/4 "></SideNavigatorView>
+    <RouterView class="tablet:w-3/4 h-screen"></RouterView>
     <DarkCover v-if="darkCoverFlag" class="absolute z-10"></DarkCover>
   </div>
 </template>

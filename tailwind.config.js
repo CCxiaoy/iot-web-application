@@ -36,6 +36,12 @@ module.exports = {
       tipAddDeviceTitle: ["1rem", "1,75rem"],
       tipAddAutomateTaskTitle: ["1rem", "1,75rem"],
     },
+    screens: {
+      // 'large' : '',
+      'tablet': '880px',
+      'medium': '650px',
+      'phone': '100px'
+    },
     extend: {},
   },
   variants: {

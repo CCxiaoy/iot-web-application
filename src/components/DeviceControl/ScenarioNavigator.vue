@@ -1,5 +1,5 @@
 <template>
-    <div class="flex px-12 pt-3 pb-4">
+    <div class="flex tablet:px-12 px-4 pt-3 pb-4">
         <i
             class="w-8 h-8 border-2 rounded-full border-borderGray-medium bg-themeColor-lightest flex justify-center content-center">
             <IconBackToHome @click="backToHomeScenario"></IconBackToHome>

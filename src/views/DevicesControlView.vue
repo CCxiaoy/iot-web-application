@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-themeColor-light h">
+    <div class="bg-themeColor-light">
         <ScenarioNavigator></ScenarioNavigator>
         <DevicePanel></DevicePanel>
     </div>
