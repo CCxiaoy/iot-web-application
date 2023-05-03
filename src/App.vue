@@ -28,3 +28,9 @@ window.addEventListener('beforeunload', closeDarkCover);
 </script>
 
 <style scoped></style>
+<style>
+/* provide transition animation */
+* {
+  transition-duration: 0.5s;
+}
+</style>
